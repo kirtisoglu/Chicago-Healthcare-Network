@@ -1,0 +1,50 @@
+https://download.cms.gov/nppes/NPI_Files.html
+NPPES Data Dissemination V.2 (February 09, 2026) - ZIP format (1,059.55 MB)
+77,590 Chicago providers found from 9.3 million total records nationwide.
+This includes all provider types (physicians, nurses, therapists, organizations, etc.), not just physicians.
+
+
+File	                        Level	   Year	        Contents
+chicago_blocks_enriched.pkl	    Block	   2020	        All chicagoo.pkl columns + population_65_plus + poverty_rate
+chicago_block_age65.csv	        Block	   2020         DHC	GEOID20, TOT_POP, population_65_plus
+chicago_tract_poverty.csv	    Tract	   2020         ACS	poverty_rate, pop_below_poverty, pop_poverty_universe
+chicago_providers.csv	        Provider   2026 NPPES	77,590 Chicago NPI providers
+
+
+
+
+Chicago Providers – Primary Taxonomy Types (NPPES)
+Total providers: 77,590  (Individual: 61,460 / Organization: 16,130)
+
+Provider Type                                      Taxonomy Code     Count
+---------------------------------------------------------------------------
+Student (Health Care)                              390200000X        5,319
+Social Worker – Clinical                           1041C0700X        4,634
+Internal Medicine (Physician)                      207R00000X        3,673
+Physical Therapist                                 225100000X        2,812
+Counselor – Professional                           101YP2500X        2,511
+Counselor – Mental Health                          101YM0800X        2,470
+Pharmacist                                         183500000X        1,931
+Family Medicine (Physician)                        207Q00000X        1,881
+Speech-Language Pathologist                        235Z00000X        1,860
+Psychologist – Clinical                            103TC0700X        1,688
+Dentist – General Practice                         1223G0001X        1,599
+Dentist                                            122300000X        1,528
+Nurse Practitioner – Family                        363LF0000X        1,505
+Social Worker                                      104100000X        1,374
+Pediatrics (Physician)                             208000000X        1,280
+Occupational Therapist                             225X00000X        1,275
+Physician Assistant                                363A00000X        1,265
+Peer Support Provider                              106S00000X        1,205
+Emergency Medicine (Physician)                     207P00000X        1,171
+Chiropractor                                       111N00000X        1,026
+Dietitian / Nutritionist                           133V00000X          992
+Anesthesiology (Physician)                         207L00000X          979
+Psychiatry (Physician)                             2084P0800X          943
+Registered Nurse                                   163W00000X          834
+Optometrist                                        152W00000X          808
+Nurse Practitioner                                 363L00000X          750
+Obstetrics & Gynecology (Physician)                207V00000X          740
+Counselor                                          101Y00000X          719
+Behavioral Analyst                                 103K00000X          685
+Respiratory Therapist                              222Q00000X          662
