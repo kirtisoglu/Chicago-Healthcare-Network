@@ -1,6 +1,8 @@
 data
 !data/chicagoo.pkl
 !data/community_areas.geojson
+healthcare/data
+!healthcare/data/hrsa_health_centers.geojson
 .venv
 __pycache__/
 *.py[cod]
