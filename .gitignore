@@ -1,1 +1,9 @@
 data
+!data/chicagoo.pkl
+!data/community_areas.geojson
+.venv
+__pycache__/
+*.py[cod]
+.vscode
+.claude
+*.xlsx
