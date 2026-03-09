@@ -1,0 +1,16 @@
+panel==1.8.9
+bokeh==3.8.2
+param==2.3.2
+folium==0.20.0
+geopandas==1.1.2
+shapely==2.1.2
+pyproj==3.7.2
+fiona==1.9.6
+pandas==3.0.1
+numpy==1.26.4
+requests==2.32.5
+branca==0.8.2
+Jinja2==3.1.6
+osmnx==2.1.0
+tornado==6.4
+falcomplot @ git+https://github.com/kirtisoglu/FalcomPlot.git

@@ -72,22 +72,41 @@ status = pn.pane.Markdown("", width=250)
 
 # ── Collapsible section helper ───────────────────────────────────────────────
 
+_SS_COLLAPSED = [":host .bk-btn { text-align: left; font-weight: 600; "
+                 "font-size: 13px; color: #1D3557; padding: 6px 4px; "
+                 "border: none; background: #e8ecf0; cursor: pointer; "
+                 "border-radius: 4px; }"]
+_SS_EXPANDED  = [":host .bk-btn { text-align: left; font-weight: 600; "
+                 "font-size: 13px; color: #1D3557; padding: 6px 4px; "
+                 "border: none; background: #ffffff; cursor: pointer; "
+                 "border-radius: 4px 4px 0 0; }"]
+
+
 def _make_section(title, contents, expanded=False):
     """Build a collapsible section with an arrow toggle."""
-    body = pn.Column(*contents, visible=expanded)
+    body = pn.Column(
+        *contents,
+        visible=expanded,
+        styles={
+            "background": "#ffffff",
+            "border": "1px solid #d0d7de",
+            "border-top": "none",
+            "border-radius": "0 0 4px 4px",
+            "padding": "6px 4px",
+        },
+    )
     arrow = pn.widgets.Toggle(
         name=f"{'▼' if expanded else '▶'}  {title}",
         value=expanded,
         width=250,
         button_type="light",
-        stylesheets=[":host .bk-btn { text-align: left; font-weight: 600; "
-                     "font-size: 13px; color: #1D3557; padding: 6px 4px; "
-                     "border: none; background: transparent; cursor: pointer; }"],
+        stylesheets=_SS_EXPANDED if expanded else _SS_COLLAPSED,
     )
 
     def _toggle(event):
         body.visible = event.new
         arrow.name = f"{'▼' if event.new else '▶'}  {title}"
+        arrow.stylesheets = _SS_EXPANDED if event.new else _SS_COLLAPSED
 
     arrow.param.watch(_toggle, "value")
     return arrow, body
@@ -188,22 +207,24 @@ facility_label = pn.widgets.TextInput(
     name="Dataset Label",
     placeholder="e.g. Hospitals",
     width=230,
+    styles={"height": "38px"},
 )
 facility_color = pn.widgets.ColorPicker(
-    name="Marker Color",
+    name="Color",
     value="#E63946",
-    width=230,
+    width=108,
 )
 facility_size = pn.widgets.IntSlider(
-    name="Marker Size",
+    name="Size",
     start=1,
     end=20,
     value=6,
-    width=230,
+    width=108,
 )
 facility_input = pn.widgets.FileInput(
     accept=".geojson,.json",
     width=230,
+    styles={"height": "38px"},
 )
 facility_btn = pn.widgets.Button(
     name="Add Facilities", button_type="warning", width=230,
@@ -211,7 +232,7 @@ facility_btn = pn.widgets.Button(
 
 facilities_arrow, facilities_body = _make_section(
     "Add Facilities",
-    [facility_label, facility_color, facility_size, facility_input, facility_btn],
+    [facility_label, pn.Row(facility_color, facility_size), facility_input, facility_btn],
     expanded=False,
 )
 
