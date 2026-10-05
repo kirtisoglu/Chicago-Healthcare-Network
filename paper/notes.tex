@@ -1,0 +1,521 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb,amsmath}
+\usepackage{hyperref}
+\usepackage{url,color}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+
+\begin{document}
+
+% Internal notes — not part of the paper
+% Questions, funding ideas, and working notes
+
+\section*{Questions (Internal)}
+
+\begin{enumerate}
+    \item \label{q1} Districts - equity based on travel time. \textcolor{blue}{cite this in the travel time access discussions.}
+
+    \item \label{q2} Districts - contiguity (always remind the reader that this contiguity is with respect to travel time and is not geometric, so the geometric shapes may not be compact due to varying presence of highways and trains) \textcolor{blue}{we can try to cut from highways using candidate awareness.}
+
+    \item \label{q3} PC and hospital candidate generation  - fixed plus random (it can be purely fixed as long as they are well distributed as that is an unavoidable requirement)
+    \textcolor{blue}{we will use a catchment area model, so candidates will not be a problem. We do not really need to show exact location but districts to locate a facility. If there exists an exact location, then we can suggest it. We will use all hospitals within a flow model.}
+
+    \item \label{q4} Overall focus on a portion of Chicago such as South + SW side Capacity/demand at District level - currently we are using population density as a proxy. \textcolor{blue}{cite this when you discuss our plan. Citations and MUA.}
+
+    \item \label{q5} Need to keep track of other attributes such as demographic data e.g. poverty level, obesity level, insurance rate, etc. In the future can use a combination of population density and a particular demographic attribute (e.g. poverty level) as  a combined proxy for demand/capacity. \textcolor{blue}{cite this in the travel time and MUA discussions.}
+
+    \item \label{q6} At superdistrict level -
+
+    \subitem a. Currently we are looking at it as an administrative level above primary care centers with only requirement in terms of capacity. This is already good/interesting according to Kim.
+
+    \subitem b. Kim does not recommend considering travel time to hospitals at superdistrict level, as its less important.
+    \subitem c. Could keep track of attributes such as demographic data at this level also
+
+    \subitem d. In the future could try to make superdistricts equitable with regard to some demographic data such as insurance level. Or at least try to minimize the variation across superdistricts. Should check with Kim if she has preference for which attribute to use here.
+
+    \subitem e. Kim mentioned that all hospitals are supposed to do a study of their region with regard to its needs (?) That could be incorporated to create a more detailed requirements for a superdistrict. This would require more information and discussion with Kim.
+\end{enumerate}
+
+Additional questions:
+\begin{enumerate}
+\item What is the relation between primary cares and hospitals?
+\item What are the definitions of equity and access other than travel time?
+\item Decision-maker concerns other than budget? What kind of advice do they need?
+\item Existing facilities?
+\item Only one hospital per primary care centers? How many PHC per hospital at most?
+\end{enumerate}
+
+
+\section*{Funding Opportunities (Internal)}
+
+\subsection*{Top Priority — Best Fit}
+
+\begin{enumerate}
+
+\item \textbf{NSF SCH: Smart Health and Biomedical Research in the Era of AI and Advanced Data Science} (NSF 25-542, joint with NIH). Up to \$1,200,000 (\$300K/year, 4 years). Funds computational methods addressing healthcare challenges — optimization models, transit-based accessibility, and decision-support dashboards fit directly. Deadline: October 2025 (annual cycle; watch for NSF 26-xxx successor). \\
+\url{https://www.nsf.gov/funding/opportunities/sch-smart-health-biomedical-research-era-artificial-intelligence/nsf25-542/solicitation}
+
+\item \textbf{NSF S\&CC: Smart and Connected Communities} (NSF 25-527). Integrative Research Grants up to \$2,500,000 (4 years); Planning Grants up to \$150,000 (1 year). Requires community partner engagement — CTA transit analysis, FQHC optimization for Chicago communities, and dashboard for CDPH are an excellent fit. A planning grant (SCC-DG) could fund pilot work with Chicago CDPH. Deadline: Preliminary proposals January 2026; full proposals March 2026. \\
+\url{https://www.nsf.gov/funding/opportunities/scc-smart-connected-communities/505364/nsf25-527/solicitation}
+
+\item \textbf{AHRQ PA-24-205: Research to Advance the Science of Primary Care} (R01). Up to \$500,000 direct costs/year, 5 years. Explicitly supports research on ``the role, capacity, and value of primary care'' and ``health equity.'' FQHC placement optimization directly advances primary care access and equity. Standard NIH cycles (Feb 5, Jun 5, Oct 5). \\
+\url{https://grants.nih.gov/grants/guide/pa-files/PA-24-205.html}
+
+\item \textbf{NSF CMMI — Operations Engineering (OE) Program}. Typical awards \$200K--\$500K over 3 years. Core disciplinary home for location-allocation, resource allocation, and public-sector decision models. Rolling/continuous submission. \\
+\url{https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=13473&org=CMMI}
+
+\end{enumerate}
+
+\subsection*{Strong Fit}
+
+\begin{enumerate}
+
+\item \textbf{RWJF Health Equity Scholars for Action (HES4A)}. Up to \$260,000 per award (15 awards/cohort). For early-career investigators within 10 years of terminal degree. Supports equity-driven research and leadership. Full proposals due March 12, 2026. \\
+\url{https://www.rwjf.org/en/grants/active-funding-opportunities/2025/health-equity-scholars-for-action.html}
+
+\item \textbf{RWJF Research to Advance Racial and Indigenous Health Equity}. \$50,000--\$200,000 over 2 years. By invitation after LOI. MUA designation gap analysis quantifies racial disparities in primary care access. \\
+\url{https://www.rwjf.org/en/grants/active-funding-opportunities/2025/research-to-advance-racial-and-indigenous-health-equity.html}
+
+\item \textbf{NIH NIMHD — Health Disparities Research} (R01/R21/R03). R01 up to \$500K/year for 5 years. Standard NIH cycles. Directly addresses health disparities in underserved Chicago communities. \textcolor{red}{Note: FY2026 budget proposed eliminating NIMHD (\$534M reduction). Monitor legislative developments — Congress may restore funding.} \\
+\url{https://www.nimhd.nih.gov/funding-opportunities/active-funding-opportunities}
+
+\item \textbf{HRSA New Access Points (NAP) Grants}. Up to \$650,000/year. Funds new FQHC sites — our optimization models could serve as the analytical foundation for NAP applications, demonstrating need and optimal site selection. \\
+\url{https://bphc.hrsa.gov/funding/funding-opportunities/new-access-points}
+
+\item \textbf{NIH K99/R00 Pathway to Independence}. For postdocs transitioning to faculty. Two phases: K99 (mentored, 1--2 years) then R00 (independent, up to 3 years). Standard NIH cycles.
+
+\end{enumerate}
+
+\subsection*{Additional Opportunities}
+
+\begin{enumerate}
+
+\item \textbf{NSF CMMI — Infrastructure Systems and People (ISP)}. Healthcare as critical community infrastructure with equity dimensions. Continuous submission. \\
+\url{https://www.nsf.gov/funding/opportunities/isp-infrastructure-systems-people}
+
+\item \textbf{RWJF Exploring Equitable Futures}. No set amount; rolling admission. Could fund forward-looking scenario modeling for equitable FQHC expansion. \\
+\url{https://www.rwjf.org/en/grants/active-funding-opportunities/2025/exploring-equitable-futures.html}
+
+\item \textbf{AHRQ Small Research Projects for Primary Care} (R03, PA-23-115). Up to \$100,000 over 2 years. Good for pilot studies or methodological extensions. \\
+\url{https://grants.nih.gov/grants/guide/pa-files/PA-23-115.html}
+
+\item \textbf{Commonwealth Fund — Advancing Health Equity}. Health equity and primary care transformation. Check for open solicitations. \\
+\url{https://www.commonwealthfund.org/programs/advancing-health-equity}
+
+\item \textbf{Healthy Communities Foundation} (Chicago-area). Local health conversion foundation focused on health access equity in suburban Cook County. Could fund community engagement or dashboard deployment. \\
+\url{https://hcfdn.org/}
+
+\item \textbf{INFORMS Awards}. Doing Good with Good OR Award; Health Applications Society prizes. Recognition and small grants for OR in healthcare. \\
+\url{https://www.informs.org/Recognizing-Excellence/Scholarships}
+
+\item \textbf{Chicago CDPH RFPs}. Guided by Healthy Chicago 2025; focused on eliminating the life expectancy gap. \textcolor{red}{Note: CDPH budget declined 54.4\% from 2025 levels, constraining new grants.} Best pursued as a community partner rather than funder. \\
+\url{https://www.chicago.gov/city/en/depts/cdph/provdrs/cdph_administration/svcs/rfps-and-grants.html}
+
+\end{enumerate}
+
+\textcolor{red}{Note: RWJF's signature research programs (including Evidence for Action) are winding down by end of 2026 to make way for a new health equity research initiative. Watch for the successor program.}
+
+
+\section*{Collaboration Opportunities (Internal)}
+
+\subsection*{Tier 1 — Highest Priority}
+
+\begin{enumerate}
+
+\item \textbf{Sage Kim, PhD — UIC, Division of Health Policy and Administration.}
+Published ``The Uneven Distribution of Medically Underserved Areas in Chicago'' (PMC8175250) — the empirical foundation our model operationalizes. Found that census tracts eligible but not designated as MUAs were predominantly on the South Side, over 92\% Black, with FQHC rates of only 15.5 per 100K poor vs.\ 41 in designated tracts. Also a Data Core leader in UIC's NIMHD health disparities center. \\
+\url{https://publichealth.uic.edu/profiles/sage-kim/}
+
+\item \textbf{Sanjay Mehrotra, PhD — Northwestern, Industrial Engineering \& Management Sciences.}
+INFORMS Fellow; founding director of Center for Engineering and Health. Expert in optimization under uncertainty, distributionally-robust optimization. Healthcare OR research includes predictive modeling, hospital operations, and policy modeling. The most prominent healthcare operations researcher in Chicago. \\
+\url{https://www.mccormick.northwestern.edu/research-faculty/directory/profiles/mehrotra-sanjay.html}
+
+\item \textbf{Marshall Chin, MD \& Elbert Huang, MD — UChicago Medicine.}
+Co-led an 11-paper research series commissioned by HRSA's Bureau of Primary Health Care exploring the value of FQHCs. Chin focuses on reducing health disparities; Huang directs the Center for Chronic Disease Research and Policy. Direct relationship with HRSA. \\
+\url{https://chronicdisease.uchicago.edu/}
+
+\item \textbf{AllianceChicago.}
+Health center-controlled network linking 70+ organizations. Maintains EHR data repository from 4+ million highly diverse patients across FQHCs. Practice-based research network. Most valuable data resource for calibrating our optimization model. \\
+\url{https://alliancechicago.org/}
+
+\item \textbf{NACHC (National Association of Community Health Centers).}
+Represents 1,400+ FQHCs serving 30+ million patients. Direct relationships with HRSA and Congress. In 2026, launched the NACHC Accelerator to scale innovative technologies across CHCs. Our model could inform their advocacy for where new FQHCs should be located. \\
+\url{https://www.nachc.org/}
+
+\end{enumerate}
+
+\subsection*{Tier 2 — Strong Fit, Existing Bridges}
+
+\begin{enumerate}
+
+\item \textbf{C3EN: Chicago Chronic Condition Equity Network (Rush + UChicago).}
+\$20M, 5-year NIH grant for community-academic partnerships improving health equity for African Americans and Latinos in Chicago. Offers pilot project grants up to \$50K direct costs. Existing IIT-Rush partnership (ID Action Lab + Rush Graduate College). \\
+\url{https://www.c3en.org/}
+
+\item \textbf{UChicago Health Lab — Urban Labs.}
+Focuses on health/homelessness, public health/safety, and equitable access. Partners with civic and community leaders. Connection to Harris School provides policy translation channels. IIT Institute of Design already has a multi-year agreement with UChicago Medicine Innovation Unit (since April 2023); Kim Erwin is a Visiting Scholar there. \\
+\url{https://urbanlabs.uchicago.edu/labs/health}
+
+\item \textbf{Medical Home Network (MHN).}
+ACO governed by 16 healthcare organizations: 13 FQHCs + 3 hospital systems. Integrated patient data across 360+ medical homes for 160,000+ Medicaid patients. Advanced predictive analytics. Real-world utilization data for model calibration. \\
+\url{https://medicalhomenetwork.org/}
+
+\item \textbf{UIC Center for Health Equity Research (CHER).}
+NIH NIMHD Center of Excellence — only one in the Midwest (one of 12 nationally). Directors: Daviglus, Ramirez-Valles, Winn. Has infrastructure, data, and pilot grant mechanisms. \\
+\url{https://hospital.uillinois.edu/about-ui-health/research/health-equity-research}
+
+\item \textbf{Karriem Watson, DHSc — UIC, Mile Square Health Center.}
+Executive Director of UIC's FQHC network (Mile Square). Former Chief Engagement Officer for NIH's All of Us. Could provide operational FQHC data, validate model assumptions, and bridge to community stakeholders. \\
+\url{https://vcha.uic.edu/profiles/watson-karriem/}
+
+\item \textbf{IPHCA (Illinois Primary Health Care Association).}
+Statewide trade association for Illinois FQHCs; represents 450+ sites serving 1.5M patients annually. Direct knowledge of where new FQHC applications are being considered. Could translate optimization recommendations into policy advocacy. \\
+\url{https://www.iphca.org/}
+
+\item \textbf{Rush BMO Institute for Health Equity.}
+Rush adopted health equity as an institutional strategy in 2016. Anchor institution strategy directly addresses FQHC service area inequities. Existing IIT-Rush collaboration through ID Action Lab. \\
+\url{https://www.rush.edu/about-us/rush-community/commitment-community-rush-bmo-institute-health-equity}
+
+\end{enumerate}
+
+\subsection*{Tier 3 — Complementary Expertise and Dissemination}
+
+\begin{enumerate}
+
+\item \textbf{Elisa Long, PhD — UCLA Anderson.}
+Published ``Closer to Home: A Structural Estimate-Then-Optimize Approach to Improve Access to Healthcare Services'' (Management Science, 2024). Developed SETO framework combining structural demand estimation with choice-based optimal facility location. Methodologically the closest published work to our research. \\
+\url{http://www.elisalong.com/}
+
+\item \textbf{Stacy Lindau, MD — UChicago, CommunityRx.}
+Connects people with personalized community-based resources; delivered to 114,000+ people since 2012 in community health centers. Granular South Side community health data could inform demand-side parameters. NIH and PCORI funded. \\
+\url{https://voices.uchicago.edu/lindaulab/}
+
+\item \textbf{Center for Community Health Equity (Rush + DePaul).}
+Co-Directors: Raj Shah (Rush), Maria Joy Ferrera (DePaul). Founding Co-Director Fernando De Maio has quantitative health equity research complementary to our optimization approach. Principle: ``your zip code should not determine your life expectancy.'' \\
+\url{https://healthequitychicago.org/}
+
+\item \textbf{Sinai Urban Health Institute (SUHI).}
+Nationally recognized research center on Chicago's West Side (since 2000). Runs Sinai Community Health Survey and CHW workforce development. 20+ years of community trust, essential for participatory validation. \\
+\url{https://suhi.sinaichicago.org/}
+
+\item \textbf{UIC Institute for Health Research and Policy (IHRP).}
+Jamie Chriqui (policy surveillance) and Lisa Powell (prevention research). Cross-disciplinary infrastructure; Chriqui's policy expertise could translate optimization results into HRSA recommendations. \\
+\url{https://ihrp.uic.edu/}
+
+\item \textbf{Chicago Health Atlas.}
+Managed jointly by UIC SPH, Metopio, and Chicago DPH. Free neighborhood-level health data for Chicago's 77 community areas. Data platform for public-facing tools. \\
+\url{https://chicagohealthatlas.org/}
+
+\item \textbf{INFORMS Health Applications Society.}
+Primary venue for disseminating healthcare OR methodology. Pierskalla Award for best paper in health care management science. Bonder Scholarship and Mehrotra Award. \\
+\url{https://connect.informs.org/healthapplications/home}
+
+\item \textbf{AcademyHealth.}
+Professional society for health services researchers. Health Equity Scholars Program. Annual Research Meeting is premier venue for policy-relevant health services research. \\
+\url{https://academyhealth.org/}
+
+\item \textbf{Health \& Medicine Policy Research Group (HMPRG).}
+Independent nonprofit (since 1981) promoting health equity. Runs Public Health Equity Center. Policy advocacy could translate optimization findings into recommendations. \\
+\url{https://www.hmprg.org/}
+
+\end{enumerate}
+
+\subsection*{Existing IIT Partnerships}
+
+\begin{tabular}{ll}
+\textbf{UChicago Medicine} & Multi-year agreement with ID Equitable Healthcare Lab (since 2023). Kim Erwin is Visiting Scholar. \\
+\textbf{Rush University} & Graduate College + ID Action Lab collaboration on community-centered health equity. \\
+\textbf{ITM} & NIH-funded Institute for Translational Medicine: UChicago + Rush + IIT + Loyola + Advocate (\~\$35M). \\
+\textbf{UIC} & Kim Erwin previously served as Assoc.\ Director of Population Health Sciences at UIC (2017--2020). \\
+\end{tabular}
+
+\bigskip
+
+
+\section*{Referral Network Notes}
+
+\subsection*{Key Papers}
+
+\begin{enumerate}
+
+\item \textbf{An, O'Malley, Rockmore, Stock (2018).} ``Analysis of the U.S.\ Patient Referral Network.'' \textit{Statistics in Medicine}, 37(5):847--866. doi:10.1002/sim.7565. PMC5799011.
+
+Uses the CMS Physician Shared Patient Patterns dataset (2009--2015). Two physicians are linked if a patient encounters both within 30 days. Builds a directed, weighted network at national and state levels ($\sim$4.3M physicians by NPI). Finds power law degree distributions, small-world structure, core-periphery organization, and a gravity law for interstate referrals: $F_{ij} = G \cdot M_i^{\beta_i} M_j^{\beta_j} / D_{ij}^{\beta_d}$ with $\hat{\beta}_d = 1.342$. Network metrics (average degree, clustering, assortativity, component size heterogeneity) correlate significantly with state-level health outcomes (mortality, hospital beds/capita, opioid prescriptions, costs) via mixed-effect regression models.
+
+\textcolor{blue}{Relevance: This is the methodological foundation for building a Chicago-level referral network. Filter CMS Shared Patient data to Chicago NPIs from our NPPES dataset, build the directed graph, then aggregate to facility level. The network reveals actual patient flow---which facilities are referral hubs, which are peripheral, and where referral deserts align with MUAs. Directly informs FalCom district/superdistrict design: districts should respect referral flow patterns, not just geographic proximity.}
+
+\item \textbf{Patel, Schettini, O'Leary, Bosworth, Anderson, Shah (2018).} ``Closing the Referral Loop: An Analysis of Primary Care Referrals to Specialists in a Large Health System.'' \textit{Journal of General Internal Medicine}, 33(5):715--721. doi:10.1007/s11606-018-4392-z.
+
+Analyzes 103,737 referral scheduling attempts from 24 primary care sites to 20 specialties at Duke (Epic EMR, FY2016). Only \textbf{34.8\%} resulted in documented completed specialist appointments. Key drivers of the gap: low documented appointment scheduling rates (38.9\% of attempts lacked dates), wide individual clinic variation in completion rates, and patient access barriers. Completed referrals had significantly shorter wait times (20.1 vs.\ 41.7 days, $p<0.001$) and shorter distances to nearest in-network specialist (8.1 vs.\ 8.6 miles, $p<0.001$). Out-of-network referrals accounted for 47.8\% of scheduling attempts and 100\% lacked documented appointment dates.
+
+\textcolor{blue}{Relevance: (1) Motivation---the 65\% referral failure rate justifies why facility placement and referral network optimization matter. If two-thirds of referrals fail to close, system design (not just capacity) is broken. (2) Geographic distance matters even within a single health system---completed referrals are closer. This supports our travel-time-based district design. (3) Out-of-network referral leakage (47.8\%) shows that system boundaries are porous---relevant for superdistrict design where we want to minimize cross-boundary referrals. (4) Wide clinic-level variation suggests that facility-level interventions (not just system-wide policies) can improve referral completion---aligns with our site-level analysis approach.}
+
+\item \textbf{An, O'Malley, Rockmore (2018).} ``Referral paths in the U.S.\ physician network.'' \textit{Applied Network Science}, 3:20. doi:10.1007/s41109-018-0081-4.
+
+Companion to the above paper, now using Medicare cardiovascular disease claims (TDI dataset, 2006--2011) with richer metadata (visit dates, RVUs, specialties, hospital affiliations). Defines \emph{referral paths}: the chronological sequence of physicians a patient encounters, with a 30-day gap threshold for consecutive visits. Builds directed referral networks at national, HRR ($>$300), and hospital ($>$4,800) levels. Key contributions:
+
+\begin{itemize}
+    \item \textit{Referral path features}: path length ($\sim$4 physicians), average time gap ($\sim$8--9 days), time range ($\sim$25 days), recurrence (33\% of paths), physician/hospital/HRR entropy, reciprocal pairs ($\sim$48\%).
+    \item \textit{Ranking-based edge weights}: flow $f_{AB}$ based on chronological rank positions of physicians $A$ and $B$ on shared paths, weighted by geometric mean of path lengths (Eq.~3).
+    \item \textit{Node position metrics}: clustering coefficient, betweenness/eigenvector/PageRank centrality, h-index adapted to referral indegree.
+    \item \textit{Collaboration preference}: physicians on referral paths share $\sim$25 common neighbors vs.\ $\sim$0.003 expected in random network --- strong acquaintance bias. Only 33.2\% of referral steps cross hospital boundaries; 7.5\% cross HRR boundaries.
+    \item \textit{Teaching hospital classification}: network features (NPF, NHD, h-index, degree Gini, clustering) predict COTH status with F-score 0.78--0.83 using LR/SVM.
+    \item \textit{AMI outcome prediction}: 69 features from referral paths and network structure predict 1-year mortality and PCI treatment. Referral path features (time range, recurrence, entropy) boost gradient-boosted decision trees and have stronger correlations with total payment than clinical variables alone.
+    \item \textit{Key physician identification}: cardiologists (57.5\%), internal medicine (18.5\%), and interventional cardiology (8.6\%) dominate key positions on paths. Node position sequences show seasonal core-periphery alternation.
+\end{itemize}
+
+\textcolor{blue}{Relevance: (1) The ranking-based edge weight formula (Eq.~3) is more informative than simple shared-patient counts from CMS PSPP --- if we obtain claims-level data (via ResDAC or FOIA), we could compute these for Chicago. (2) The finding that 93\% of referral steps stay within the same hospital/HRR strongly supports travel-time-based district design --- patients already stay local. (3) Teaching hospital classification via network features could identify Chicago's ``referral hospitals'' from structure alone, without needing COTH labels. (4) The 25 common neighbors vs.\ 0.003 expected validates that referral networks are far from random --- facility placement should account for existing referral communities. (5) NPF (net patient flow) = referrals in $-$ referrals out identifies which facilities are net absorbers vs.\ net referrers --- critical for superdistrict hub placement.}
+
+\item \textbf{Wang (2022).} ``Investigating US Healthcare Referral System with Graph Neural Networks.'' In \textit{4th International Conference on Frontiers Technology of Information and Computer (ICFTIC)}, pp.~767--773. IEEE. doi:10.1109/ICFTIC57696.2022.10075286.
+
+Uses the CMS 5\% random sample of Medicare beneficiaries (2008--2010, 4.7M claims, 98,626 beneficiaries) to construct an undirected, weighted physician referral network (13,384 doctors, 11,489 referral edges). A referral is inferred when two doctors treat the same patient for the same episode. Applies three GNN-based embedding methods for link prediction:
+\begin{itemize}
+    \item \textit{Node2vec}: biased random walks with BFS/DFS interpolation; 71.25\% accuracy.
+    \item \textit{Attri2vec}: attributed network embedding incorporating physician specialty (ICD-9 codes) as node features; \textbf{98.16\%} accuracy, 0.0812 loss --- best performer.
+    \item \textit{GraphSAGE}: inductive node embeddings via neighborhood aggregation; 75.90\% accuracy.
+\end{itemize}
+Attri2vec's advantage comes from incorporating physician specialty as a node attribute, confirming that specialty is a key factor in referral target selection. Exploratory analysis shows: power-law degree distribution (most doctors have few referrals), top referral specialties are chronic diseases (hypertension, diabetes, cardiovascular), and regional diversity in network topology.
+
+\textcolor{blue}{Relevance: (1) Demonstrates that GNN link prediction on referral networks is feasible and that node attributes (specialty) dramatically improve accuracy --- relevant if we want to predict missing referral links in our Chicago network. (2) Uses the same CMS Medicare data source we would access (5\% sample is publicly available via CMS/NBER). (3) The small scale (13K doctors from 5\% sample) suggests our full Chicago network ($\sim$61K providers) would be much richer. (4) However, this is a preliminary study (conference paper, limited validation) --- the An et al.\ papers provide stronger methodological foundations. The GNN approach could be a future extension after we build the basic network.}
+
+\item \textbf{P\'{e}rez, Li, Pag\'{a}n (2021).} ``A decision-making model to optimize the impact of community-based health programs.'' \textit{Preventive Medicine}, 149:106619. doi:10.1016/j.ypmed.2021.106619. PMC8207482.
+
+Develops an \textbf{integer programming model} to select the optimal mix of community-based health programs under budget, retention, and duration constraints. Objective: $\max \sum_i \sum_j r_{ij} x_{ij}$ --- maximize the total number of participants showing improved health across programs $i$ and conditions $j$. Key constraints: population limits, budget ($\sum_i \sum_j c_i x_{ij} \leq B$), participant retention, and binary program selection. Coupled with an agent-based simulation model capturing lifestyle factor changes (smoking, diet, physical activity) and their impact on CVD outcomes.
+
+Tested 18 scenarios: 3 durations (5/10/20 years) $\times$ 3 funding levels (\$100K/\$250K/\$500K) $\times$ 2 retention rates (85\%/100\%). Key finding: \textbf{more funding does not always improve outcomes}---\$500K produced worse results than \$250K because excess budget forces selection of lower-impact programs. A 20-year implementation yielded 48\% more improved participants per year vs.\ 10-year. Seven evidence-based programs evaluated with costs \$48--\$600 per participant per year.
+
+\textcolor{blue}{Relevance: (1) Demonstrates that optimization of health resource allocation produces counterintuitive but critical insights (more money $\neq$ better outcomes). This is a powerful argument for why spatial optimization matters---naive resource allocation is demonstrably suboptimal. (2) Their IP + agent-based simulation approach is complementary to our spatial facility location model. They optimize \emph{which programs} to fund; we optimize \emph{where} to place facilities. A natural integration: our model identifies where new capacity should go, and their approach determines what programs to implement at each site. (3) The RE-AIM framework alignment is useful for framing our work to public health audiences. (4) Could cite in proposals as evidence that optimization tools produce actionable, counterintuitive policy recommendations that improve on ad hoc decision-making.}
+
+\item \textbf{Salem, Ferguson (2005).} ``Casting Chicago's Safety Net: A 12-Year Review of Chicago's Community-Based Primary Care System.'' Chicago Department of Public Health, Planning and Development Division.
+
+CDPH report tracking Chicago's community-based primary care system from 1990 to 2002. Key findings:
+\begin{itemize}
+    \item Safety net sites grew from 41 to 81 (97\% increase), with capacity increasing 64\% to 1,185,357 available visits.
+    \item Visits increased 52\% from 708,923 to 1,077,845 (91\% of available capacity used).
+    \item \textbf{Capacity distribution was severely unbalanced}: the ratio of capacity to medically needy ranged from \textbf{0.4 in the Northwest to 5.1 in Central}---a tenfold difference across regions.
+    \item Northwest: 19\% of medically needy population but only 3\% of available capacity.
+    \item 484,120 low-income uninsured Chicagoans; only 171,725 (35\%) received community-based care. \textbf{312,395 remained without a medical home.}
+    \item Proportion lacking care ranged from 33\% (Central) to \textbf{94\% (Northwest)}.
+    \item South region: number of sites increased but actual visits \emph{declined} by 4\%. Southwest: same number of sites, visits dropped 37\%. ``The number of health centers may prove to be the least important'' indicator.
+    \item Federal CHC funding increased 142\% (\$554M to \$1.34B nationally) during this period.
+    \item Uninsured proportion essentially unchanged at 22.7\% over 12 years.
+\end{itemize}
+
+\textcolor{blue}{Relevance: (1) Provides 20-year historical baseline showing that Chicago's capacity-need mismatch is a persistent structural problem, not a recent development. The same South/West Side communities underserved in 2002 remain underserved in 2026. (2) The tenfold capacity-to-need ratio variation (0.4 to 5.1) across regions is a devastating indictment of ad hoc expansion---exactly the problem our optimization model addresses. (3) The finding that more sites $\neq$ more visits (South region) reinforces that \emph{where} you place facilities matters as much as \emph{how many}. (4) The 312,395 medically needy without community-based care provides a concrete number for the population our model aims to serve. (5) Can cite alongside our current data to show the problem has persisted for 35+ years despite massive federal investment increases.}
+
+\end{enumerate}
+
+\subsection*{Data for Chicago Referral Network}
+
+CMS Physician Shared Patient Patterns dataset (referenced in An et al.\ as \url{https://questions.cms.gov/faq.php?faqId=7977}). Contains physician-pair shared patient counts within 30/60/90/180-day intervals. Physicians identified by NPI. Need to verify current availability and most recent year---the paper used 2009--2015 data.
+
+Approach: Filter to Chicago NPIs (from \texttt{chicago\_providers.csv}, 61,460 individuals), build directed weighted graph, aggregate to facility level using address matching already developed for NPPES--HRSA and NPPES--Google joins.
+
+\bigskip
+
+\section*{Model Design Notes}
+
+Write down the system types. A flow-based model? Coverage and system-choice model? How to integrate them into FalCom?
+
+Concern: How FalCom changes real decisions in urban primary care systems.
+What breaks, what improves, and what becomes visible when we force district--superdistrict coupling in health care planning.
+
+The model could be interpreted as a strategic planning tool rather than replacing the application process. For example, the model could identify priority communities where new FQHC capacity should be encouraged. Policy makers could then issue targeted funding calls, support community organizations to apply, prioritize those areas in grant competitions.
+
+$x_j= 1$ if community $j$ receives funding priority.
+
+Some high-need communities may lack organizations capable of applying for federal grants. So no application may exist, even if the need is high. Organizations tend to apply where healthcare systems already exist and administrative capacity is strong. Therefore, designing MUAs is not enough. Model and system should convince them to apply for underserved areas.
+
+\subsection*{IMU Score Redesign Ideas}
+
+Three directions to address the binary IMU threshold problem:
+
+\begin{enumerate}
+    \item \textbf{Probabilistic IMU design:} Instead of a deterministic composite score, model each indicator (provider-to-population ratio, infant mortality rate, poverty rate, proportion aged 65+) with uncertainty distributions. Each census tract would receive a \emph{probability of being underserved} rather than a binary yes/no at the 62-point cutoff. This naturally handles measurement error and temporal fluctuations in the underlying indicators.
+
+    \item \textbf{Energy-based model for FalCom:} Treat the IMU score as an energy landscape where the optimization seeks to minimize total system energy (aggregate unmet need). This would let FalCom jointly optimize facility placement and designation boundaries, rather than treating them as separate sequential steps. The energy formulation could also incorporate spatial smoothness constraints so that adjacent tracts with similar characteristics receive consistent treatment.
+
+    \item \textbf{Census block-level IMU projection:} The current system computes IMU at the census tract or service area level, which masks within-area variation. Project IMU components down to the census block level using ACS block-level data. This would reveal where the sharp cutoff actually falls spatially: a tract scoring 63 (just above threshold, not designated) may contain blocks that are clearly underserved but invisible to the current system. Produces a map showing exactly which populations fall through the cracks of the binary threshold.
+\end{enumerate}
+
+\subsection*{Project Status and Next Steps (March 2026)}
+
+\begin{enumerate}
+    \item \textbf{CTA travel time matrix:} Code is ready. Once we finalize which facility locations to use (unified facility table), we can compute the full transit travel time matrix in approximately 1 minute.
+
+    \item \textbf{Model design is the priority:} Before running FalCom, we need to formalize the model: decision variables, objectives, and constraints. This must be developed with Hemanshu. The optimization framework cannot proceed without a clear mathematical formulation.
+
+    \item \textbf{CMS referral data:} The publicly available Physician Shared Patient Patterns (PSPP) dataset covers 2009--2015, which is too old for our project (all other data is 2024--2026). Kim needs to request current data from CMS, or check whether UChicago already has access to recent years through an existing data use agreement.
+\end{enumerate}
+
+\section*{Post-Doc Strategy: Inter-Institutional Partnership}
+
+\subsection*{Goal}
+
+\textbf{Phase 1 (Publication):} Publish the spatial optimization framework and Chicago findings as a research paper---Hemanshu Kaul, Kim Erwin, and Alaittin K{\i}rt{\i}so\u{g}lu. This establishes the methodology, demonstrates the data infrastructure, and produces a citable result.
+
+\textbf{Phase 2 (Post-Doc):} Use the publication as the foundation to secure an inter-institutional post-doc position, bridging IIT and a partner institution (primarily UChicago), to turn the research into a deployable decision-support tool for FQHC planning. The post-doc phase focuses on: (a) acquiring site-level utilization data through institutional partnerships, (b) building the CTA transit travel time matrix, (c) constructing the referral network, (d) validating model outputs with FQHC operators, and (e) producing a tool that HRSA grant applicants and policymakers can actually use.
+
+\subsection*{Why Inter-Institutional}
+
+This project sits at the intersection of three disciplines that no single department covers: (1) combinatorial optimization and network science (IIT Applied Math), (2) health equity and design research (IIT Institute of Design / Kim Erwin), and (3) primary care policy, FQHC operations, and health disparities data (UChicago Medicine, UIC SPH, or Northwestern). A joint appointment legitimizes the interdisciplinary scope, provides access to health data and clinical validation that IIT alone cannot offer, and positions the work for major federal grants (NSF S\&CC, NIH, AHRQ) that favor multi-institutional teams. The publication from Phase 1 provides the credibility and proof-of-concept needed to justify the post-doc investment.
+
+\subsection*{Priority 1: IIT--UChicago (Strongest Existing Bridge)}
+
+\textbf{Why UChicago:}
+\begin{itemize}[nosep]
+    \item Kim Erwin is already a Visiting Scholar at UChicago Medicine Innovation Unit (since April 2023).
+    \item IIT Institute of Design has a multi-year agreement with UChicago Medicine.
+    \item ITM (Institute for Translational Medicine) is an NIH-funded consortium that already includes both IIT and UChicago (plus Rush, Loyola, Advocate; \~\$35M). Has pilot grant mechanisms and post-doc infrastructure.
+    \item UChicago's South Side location places it in the center of the health equity crisis this project addresses.
+\end{itemize}
+
+\textbf{Target faculty for co-sponsorship:}
+\begin{enumerate}[nosep]
+    \item \textbf{Marshall Chin, MD} (UChicago Medicine) --- Co-led an 11-paper research series commissioned by HRSA's Bureau of Primary Health Care on the value of FQHCs. Focuses on reducing health disparities. Has direct HRSA relationships. \textit{Fit: He has the FQHC policy expertise and HRSA connections; we bring the spatial optimization and data infrastructure he lacks.} \\
+    \url{https://www.uchicagomedicine.org/find-a-physician/physician/marshall-h-chin}
+
+    \item \textbf{Elbert Huang, MD} (UChicago, Center for Chronic Disease Research and Policy) --- Directs chronic disease research center; co-authored the HRSA FQHC series with Chin. Health economics and primary care value. \textit{Fit: Our model quantifies what his center studies qualitatively---where investment in primary care yields the greatest return.} \\
+    \url{https://chronicdisease.uchicago.edu/}
+
+    \item \textbf{Stacy Lindau, MD} (UChicago, CommunityRx) --- Connects patients with community-based resources; delivered to 114,000+ people in South Side health centers since 2012. Has granular community health data. NIH and PCORI funded. \textit{Fit: She has ground-level community data and relationships; we provide the system-level optimization framework.} \\
+    \url{https://voices.uchicago.edu/lindaulab/}
+\end{enumerate}
+
+\textbf{Mechanism:} Ask Kim Erwin to make introductions through her existing UChicago Visiting Scholar role. Frame the post-doc as extending the IIT--UChicago Medicine agreement into a concrete research deliverable. The ITM provides an existing administrative framework for joint appointments.
+
+\textbf{Funding paths for the post-doc itself:}
+\begin{itemize}[nosep]
+    \item \textbf{ITM pilot grants} --- internal mechanism for cross-institutional translational research.
+    \item \textbf{NIH K99/R00 Pathway to Independence} --- for postdocs transitioning to faculty. Two phases: K99 (mentored, 1--2 years at UChicago/IIT) then R00 (independent, up to 3 years as new faculty). Chin or Huang as K99 mentor. Standard NIH cycles (Feb 5, Jun 5, Oct 5).
+    \item \textbf{C3EN pilot projects} (Rush + UChicago, \$20M NIH grant) --- up to \$50K direct costs for pilot projects improving health equity for African Americans and Latinos in Chicago. Existing IIT--Rush connection through ID Action Lab.
+    \item \textbf{NSF S\&CC Planning Grant} (\$150K, 1 year) --- fund a pilot with CDPH as community partner. Post-doc salary could be included. Requires community engagement letter.
+    \item \textbf{RWJF Health Equity Scholars for Action} --- up to \$260K per award; for early-career investigators within 10 years of terminal degree.
+    \item \textbf{T32 training grants} --- UChicago may have existing T32s in health services research or health disparities that could fund a post-doc slot.
+\end{itemize}
+
+\subsection*{Priority 2: IIT--Northwestern (Methodological Strength)}
+
+\textbf{Target:} \textbf{Sanjay Mehrotra, PhD} (Northwestern IEMS) --- INFORMS Fellow, founding director of Center for Engineering and Health. Most prominent healthcare operations researcher in Chicago. Expert in optimization under uncertainty, distributionally-robust optimization.
+
+\textit{Fit: Strongest methodological alignment---he publishes in the same OR/healthcare journals we target. But weaker on the community health / FQHC / equity side compared to UChicago.}
+
+\textbf{Mechanism:} Hemanshu Kaul (IIT) likely has existing connections through INFORMS / OR community. A Mehrotra co-sponsorship would strengthen the optimization credibility for NSF CMMI and SCH proposals.
+
+\subsection*{Priority 3: IIT--UIC (Data and Policy)}
+
+\textbf{Targets:}
+\begin{itemize}[nosep]
+    \item \textbf{Sage Kim, PhD} (UIC, Division of Health Policy and Administration) --- Published the MUA designation gap paper (PMC8175250) that our model operationalizes. Data Core leader in UIC's NIMHD health disparities center. \textit{She has the empirical foundation; we build the optimization layer on top.}
+    \item \textbf{Karriem Watson, DHSc} (UIC, Mile Square Health Center) --- Executive Director of UIC's FQHC network. Former Chief Engagement Officer for NIH's All of Us. Could provide operational FQHC data and bridge to community stakeholders.
+\end{itemize}
+
+\textbf{Existing bridge:} Kim Erwin previously served as Assoc.\ Director of Population Health Sciences at UIC (2017--2020). UIC's CHER (Center for Health Equity Research) is an NIH NIMHD Center of Excellence---one of 12 nationally---with its own pilot grant mechanisms.
+
+\subsection*{Recommended Action Sequence}
+
+\begin{enumerate}
+    \item \textbf{Immediate:} Share this proposal with Kim Erwin. Ask her to identify which UChicago faculty (Chin, Huang, or Lindau) would be most receptive and to make an introduction.
+    \item \textbf{Within 2 weeks:} Meet with the identified UChicago faculty member. Present the dashboard and data infrastructure. Discuss mutual interests and post-doc structure.
+    \item \textbf{Within 1 month:} Identify the funding mechanism (ITM pilot, K99/R00, C3EN, or S\&CC planning grant). Begin application.
+    \item \textbf{Parallel:} Reach out to Sanjay Mehrotra at Northwestern through Hemanshu Kaul for a secondary partnership focused on the optimization methodology.
+    \item \textbf{Parallel:} Contact Sage Kim at UIC directly---her MUA designation gap paper is the empirical motivation for this entire project. Even without a formal post-doc arrangement, she is a natural collaborator and co-PI.
+\end{enumerate}
+
+\subsection*{The Pitch (for Kim Erwin to relay)}
+
+\textit{We have built the most detailed spatial inventory of Chicago's primary care infrastructure to date---166 FQHCs, 128 hospitals, 416 clinics, 61,460 providers, all mapped and linked---plus an interactive dashboard. We have the optimization methodology (hierarchical facility location) ready to deploy. What we need is a clinical/policy partner who can validate the model against real FQHC operations, provide site-level utilization data, and translate recommendations into actionable policy. This is a natural extension of [Chin's HRSA work / Lindau's CommunityRx / Kim's MUA research]---we bring the computational infrastructure they lack.}
+
+\subsection*{Outreach Messages}
+
+\textbf{1. Email to Kim Erwin (asking her to relay to UChicago faculty):}
+
+\begin{quote}
+\textit{Subject: Proposal for your review --- optimization framework for FQHC planning}
+
+Hi Kim,
+
+I have put together a proposal describing the optimization framework and data infrastructure we have been building for Chicago's FQHC system. I would value your feedback before we share it more broadly.
+
+The short version: we have linked six federal datasets into the most detailed spatial inventory of Chicago's primary care system to date (166 FQHCs, 128 hospitals, 61,460 providers), built an interactive dashboard (kirtisoglu.com), and have the optimization methodology ready for the next stage. What we need now is a clinical/policy partner who can validate the model against real FQHC operations and help us access site-level utilization data.
+
+Given your role at UChicago Medicine's Innovation Unit, I wanted to ask: among Marshall Chin, Elbert Huang, and Stacy Lindau, who do you think would be most interested in this kind of spatial planning tool for health equity? We would be grateful for an introduction.
+
+The proposal is attached. Happy to walk through it whenever is convenient.
+
+Best,\\
+Alaittin
+\end{quote}
+
+\bigskip
+
+\textbf{2. Email to Marshall Chin (via Kim Erwin's introduction):}
+
+\begin{quote}
+\textit{Subject: Spatial optimization for FQHC expansion --- building on your HRSA research}
+
+Dear Dr.\ Chin,
+
+Kim Erwin suggested I reach out. I am a PhD candidate in Applied Mathematics at IIT, working with Prof.\ Hemanshu Kaul and Prof.\ Erwin on a spatial optimization framework for equitable expansion of Federally Qualified Health Centers in Chicago.
+
+Your HRSA-commissioned research series on the value of FQHCs is a foundation for our work. We are trying to address a gap that your research documents from the policy side: the absence of quantitative tools for spatial planning in the Health Center Program. HRSA requires catchment area design, needs assessment, and hospital referral relationships, but provides no analytical tools to support these decisions. The result, as Kim et al.\ (2020) showed, is that 87 Chicago census tracts qualify for MUA designation but remain undesignated, predominantly on the South Side.
+
+We have built a data infrastructure linking HRSA UDS, CMS NPPES, CMS Provider of Services, Google Places, Census, and Chicago Health Atlas data into a single spatial inventory: 166 FQHC sites, 128 hospitals, 61,460 providers, all geocoded and linked. An interactive dashboard is live at kirtisoglu.com. The optimization model (hierarchical facility location using FalCom) can produce optimal catchment boundaries, candidate site evaluations, and referral network analysis.
+
+What we lack is clinical validation and access to site-level utilization data. Would you be open to a brief meeting to discuss whether this could complement your ongoing work? I have attached a short proposal describing the framework.
+
+Best regards,\\
+Alaittin K{\i}rt{\i}so\u{g}lu
+\end{quote}
+
+\bigskip
+
+\textbf{3. Email to Stacy Lindau (via Kim Erwin's introduction):}
+
+\begin{quote}
+\textit{Subject: System-level optimization to complement CommunityRx}
+
+Dear Dr.\ Lindau,
+
+Kim Erwin suggested I reach out. I am a PhD candidate in Applied Mathematics at IIT, working with Prof.\ Hemanshu Kaul and Prof.\ Erwin on a spatial optimization framework for FQHC planning in Chicago.
+
+CommunityRx connects individual patients to community resources at the point of care. Our project works at the system level: where should facilities be located, how should catchment boundaries be drawn, and which hospitals should each clinic partner with? These are complementary perspectives. Your program has ground-level data and community relationships from 114,000+ South Side residents; we bring the computational infrastructure to optimize the system those residents navigate.
+
+We have built a spatial inventory of Chicago's entire primary care system (166 FQHCs, 128 hospitals, 61,460 providers) with an interactive dashboard at kirtisoglu.com. The optimization model can evaluate candidate locations, produce optimal catchment boundaries, and identify referral gaps.
+
+I would welcome the chance to show you the dashboard and discuss whether there is an intersection with CommunityRx's data and mission. Would you be open to a brief meeting?
+
+Best regards,\\
+Alaittin K{\i}rt{\i}so\u{g}lu
+\end{quote}
+
+\bigskip
+
+\textbf{4. Email to Sage Kim (direct contact):}
+
+\begin{quote}
+\textit{Subject: Operationalizing your MUA designation gap findings with optimization}
+
+Dear Dr.\ Kim,
+
+I am a PhD candidate in Applied Mathematics at IIT, working with Prof.\ Hemanshu Kaul and Prof.\ Kim Erwin on a spatial optimization framework for FQHC planning in Chicago. Your 2020 paper on the uneven distribution of medically underserved areas in Chicago is the empirical foundation for our entire project.
+
+Your finding that 87 census tracts meet IMU eligibility but lack MUA designation, and that administrative capacity rather than medical need drives designation outcomes, defines the problem we are trying to solve computationally. We are building an optimization model that can: (1) compute IMU scores at the census tract level to identify the designation gap, (2) propose alternative scoring methods (probabilistic IMU, smooth boundary transitions) to address the binary cutoff at 62, (3) determine optimal catchment boundaries that the current applicant-driven process fails to produce, and (4) evaluate candidate FQHC locations against real transit travel times and capacity constraints.
+
+We have assembled a spatial inventory of Chicago's primary care system (166 FQHCs, 128 hospitals, 61,460 providers, 35 MUA designations) with an interactive dashboard at kirtisoglu.com. I would be glad to show you how your data and findings appear in the system.
+
+Would you be open to a conversation about potential collaboration? Even informal guidance on the MUA designation process and data would be invaluable.
+
+Best regards,\\
+Alaittin K{\i}rt{\i}so\u{g}lu
+\end{quote}
+
+\bigskip
+
+\textbf{5. Note for Hemanshu to relay to Sanjay Mehrotra:}
+
+\begin{quote}
+\textit{Hemanshu --- could you introduce me to Sanjay Mehrotra? We are building a hierarchical facility location model for Chicago's FQHC system using FalCom. The problem has interesting structure: two-level location-allocation (clinics $\to$ hospitals) with equity objectives, capacity constraints, and CTA transit travel times. Mehrotra's work on distributionally-robust optimization could strengthen the methodology, especially for the IMU score redesign under uncertainty. We have the data infrastructure and dashboard ready; a methodological partnership with his Center for Engineering and Health could position this for NSF CMMI or SCH funding. Happy to send him the proposal if he is interested.}
+\end{quote}
+
+\end{document}

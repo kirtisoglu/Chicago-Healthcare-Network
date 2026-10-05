@@ -9,3 +9,15 @@ __pycache__/
 .vscode
 .claude
 *.xlsx
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.DS_Store

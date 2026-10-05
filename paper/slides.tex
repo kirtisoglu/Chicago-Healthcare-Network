@@ -1,0 +1,139 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usetheme{metropolis}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\title{Optimization-Based Decision Support for Equitable FQHC Expansion in Chicago}
+\subtitle{Meeting with Prof. Sage Kim}
+\author{Alaittin Kirtisoglu \and Hemanshu Kaul}
+\institute{Department of Applied Mathematics \\ Illinois Institute of Technology}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% ---------------------------------------------------------------
+\begin{frame}{The Problem: Four Gaps in the HRSA System}
+
+\begin{enumerate}
+  \item<1-> \textbf{No location evaluation tools.} When an organization applies
+        for a New Access Point grant, there is no tool to rigorously answer
+        \emph{why this location}.
+
+  \item<2-> \textbf{The IMU score is outdated.} The formula dates from the
+        1970s, omits insurance coverage, transportation, and chronic disease
+        burden, and uses a hard binary cutoff.
+
+  \item<3-> \textbf{The MUA designation process is uneven.} 87 census tracts in
+        Chicago meet IMU eligibility but were never designated, predominantly in
+        Black South Side neighborhoods (Kim et al., 2020).
+
+  \item<4-> \textbf{No referral network analysis.} HRSA mandates referral
+        relationships with hospitals and specialists, but no one has mapped how
+        referrals actually flow in Chicago.
+\end{enumerate}
+
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{The Optimization Model in Plain English}
+
+\textbf{Inputs:} facility locations, demand, capacity, travel constraints.
+
+\medskip
+\textbf{Output:} many high-quality configurations for decision-makers to
+\emph{compare and choose from} --- not a single optimal solution.
+
+\bigskip
+\textbf{Two hierarchical levels:}
+
+\begin{itemize}
+  \item \textbf{Districts} --- catchment areas around each primary care
+        facility. Addresses HRSA's catchment area design requirement.
+  \item \textbf{Superdistricts} --- groups of primary care districts sharing a
+        referral hospital. Addresses HRSA's referral relationship requirement.
+\end{itemize}
+
+\bigskip
+The framework is built to respect equity, travel time by public transit, and
+user-defined need measures.
+
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Near-Term Paper: FQHC Optimization with UDS Projection}
+
+\textbf{Data gap.} UDS data (visits, FTEs) is reported at the
+\emph{organization} level, not per site. 25 parent organizations operate 166
+FQHC sites in Chicago.
+
+\bigskip
+\textbf{Our approach.} Project aggregate organization-level UDS onto individual
+sites proportionally --- by provider count, facility size, or reported FTEs.
+
+\bigskip
+\textbf{What this enables.}
+\begin{itemize}
+  \item Run the full FQHC optimization framework with realistic demand and
+        capacity estimates.
+  \item Publish the methodology now, without waiting on a data use agreement.
+  \item Demonstrate the analytical value of having accurate site-level data.
+\end{itemize}
+
+\bigskip
+\textbf{Honest caveat.} This is an approximation. Its purpose is to motivate
+the case for true site-level data.
+
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Follow-up: Chicago Physician Referral Network}
+
+\textbf{Data source.} CMS Physician Shared Patient Patterns --- physicians are
+nodes, shared Medicare patients within 30-day windows form edges.
+
+\bigskip
+\textbf{What we would build.}
+\begin{itemize}
+  \item A Chicago-specific physician referral network.
+  \item Overlay with FQHC and hospital data to identify \emph{referral deserts}
+        --- communities where patients have no viable path from primary care to
+        specialist care.
+\end{itemize}
+
+\bigskip
+\textbf{Connection to your CBO capacity work.} Referral pathways combined with
+real-time capacity data is what turns a static map into a dynamic routing tool.
+
+\bigskip
+\textbf{Data access.} ResDAC application, or a data use agreement through UIC.
+
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{What We Offer and What We Need}
+
+\textbf{What we bring:}
+\begin{itemize}
+  \item A spatial optimization framework for hierarchical facility location and
+        districting.
+  \item Mathematical methods for equitable resource allocation.
+  \item An interactive decision-support dashboard integrating 166 FQHC sites,
+        128 hospitals, 61{,}460 providers, and 33 health indicators.
+\end{itemize}
+
+\bigskip
+\textbf{What we need:}
+\begin{itemize}
+  \item Health domain expertise to ground the modeling choices.
+  \item Data access through UIC (site-level UDS, CMS referral data).
+  \item Understanding of what decision-makers actually need from such tools.
+\end{itemize}
+
+\end{frame}
+
+\end{document}

@@ -47,12 +47,12 @@ Chicago-Healthcare-Network/
 
 ## Separation of concerns
 
-| Directory      | Responsibility                                               |
-|----------------|--------------------------------------------------------------|
-| `data/`        | Raw inputs — never modified by dashboard code               |
-| `healthcare/`  | Fetching and caching data from APIs and files (Python only) |
-| `optimization/`| Future: facility location models (p-median, LSCP, etc.)     |
-| `dashboard/`   | Deck.gl/SvelteKit front-end — reads only from `static/`     |
+| Directory         | Responsibility                                              |
+| ----------------- | ----------------------------------------------------------- |
+| `data/`         | Raw inputs — never modified by dashboard code              |
+| `healthcare/`   | Fetching and caching data from APIs and files (Python only) |
+| `optimization/` | Future: facility location models (p-median, LSCP, etc.)     |
+| `dashboard/`    | Deck.gl/SvelteKit front-end — reads only from `static/`  |
 
 The dashboard never imports from `healthcare/` or `data/` directly.
 Run the export scripts once to populate `dashboard/static/data/chicago/`, then the front-end is fully self-contained.

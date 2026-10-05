@@ -25,7 +25,7 @@ TRACT_POVERTY_VARS = ["B17001_001E", "B17001_002E"]
 
 # DHC 2020 block-level demographic data (from Allocation project)
 DHC_FILE = Path("/Users/kirtisoglu/Documents/Documents/GitHub/"
-                "Allocation-of-Primary-Care-Centers-in-Chicago/data/primary/dhc_2020.csv")
+                "FalcomChain/data/primary/dhc_2020.csv")
 CHICAGO_BLOCK_AGE_FILE = OUTPUT_DIR / "chicago_block_age65.csv"
 
 # DHC columns for 65+ population

@@ -1,0 +1,760 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb,amsmath,amsfonts,amsthm}
+\usepackage{latexsym}
+\usepackage{graphics}
+\usepackage{indentfirst}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{url,color}
+\usepackage{chngcntr}
+\usepackage{multicol}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{algpseudocode}
+\usepackage{subcaption}
+\usepackage[ruled]{algorithm2e}
+\usepackage{booktabs}
+\usepackage[numbers,sort&compress]{natbib}
+
+\AtBeginEnvironment{algorithm}{\setstretch{1.2}}
+
+\setlength{\textwidth}{15.5cm} \setlength{\headheight}{0.5cm} \setlength{\textheight}{21.5cm}
+\setlength{\oddsidemargin}{0.25cm} \setlength{\evensidemargin}{0.25cm} \setlength{\topskip}{0.5cm}
+\setlength{\footskip}{1.5cm} \setlength{\headsep}{0cm} \setlength{\topmargin}{0.5cm}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Var}{\mathrm{Var}}
+
+\allowdisplaybreaks
+
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%    Title and Authors
+\title{Optimization-Based Decision Support for Equitable Expansion of Federally Qualified Health Centers}
+
+\author{Kim Erwin$^2$, Hemanshu Kaul$^1$, Alaittin K\i rt\i \c{s}o\u{g}lu$^1$}
+
+\date{}
+
+\footnotetext[1]{Department of Applied Mathematics, Illinois Institute of Technology, Chicago, IL 60616. E-mail: {\tt {kaul@iit.edu, kirtisoglu@hawk.iit.edu}}}
+\footnotetext[2]{Institute of Design, Illinois Institute of Technology, Chicago, IL 60616. E-mail: {\tt {kerwin@id.iit.edu}}}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%    Abstract
+\begin{abstract}
+TODO
+\end{abstract}
+\noindent{\bf Keywords:} Primary care access, Medically Uniderserved Areas, Health Equity, Federally Qualified Health Centers
+
+%%%%%%%%%%%%%%%%%%%%%%%%%    Contents
+\tableofcontents
+
+\newpage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 1. Why primary care and community health centers matter
+The community health center program presents an opportunity to address critical public health 
+vulnerabilities resulting from a lack of primary care services. The health center model has 
+proven to increase access to primary care, reduce health disparities, lower costs, and improve 
+community health. The number of clinic sites operated by these organizations has increased from 
+less than 10,000 in 2015 to over 14,000 in 2021, serving 6 million additional patients (a 24\% increase) 
+over the same period \textcolor{red}{[CITE: NACHC or HRSA annual report for clinic growth statistics]}.
+
+In addition to providing direct services, health centers serve as the training ground for the next
+generation of primary care, behavioral health, and oral health providers \textcolor{red}{[CITE: NACHC or HRSA workforce report]}. A lack of access to primary
+care can weaken the public health response to future pandemics and could have dire consequences for
+patients, especially those facing compounding access barriers \cite{NASEM2021}. Patients with limited access to
+transportation, financial limitations, and other access barriers may forgo care rather than travel
+long distances to see a primary care provider.
+
+% 2. Medically underserved areas and the designation gap
+Medically underserved refers to people who live in a federally designated Health Professional 
+Shortage Area (HPSA) or Medically Underserved Area (MUA) or belong to a Medically Underserved 
+Population (MUP). Since 2014, the number of medically disenfranchised people has nearly doubled 
+from 56 million to over 100 million. A study by HealthLandscape at the American Academy of Family 
+Physicians, commissioned by NACHC, found that over 100 million people in the United States may not 
+have access to a usual source of primary care due to a shortage of providers in their community \cite{NACHC2014}.
+
+The Health Resources and Services Administration (HRSA) designates MUAs based on the Index of Medical 
+Underservice (IMU), which incorporates four indicators: physician supply, poverty rate, infant mortality, 
+and the proportion of elderly residents \cite{HRSA_BPHC}. Areas with an IMU score of 62 or less qualify 
+for MUA designation and become eligible for the establishment of Federally Qualified Health Centers (FQHCs). 
+Nationally, \$3.7 billion in federal dollars were allocated for FQHCs in 2014 \cite{NACHC2014}.
+
+However, prior research has identified an important inconsistency: some geographic areas have IMU scores 
+below the eligibility threshold but are not formally designated as MUAs \cite{kim2020uneven}. This discrepancy
+ creates a gap between measured healthcare need and formal designation, potentially affecting where federal 
+ resources are directed. MUA designation usually increases with poverty, but it actually declines once a 
+ neighborhood hits a certain tipping point of extreme poverty and racial segregation. Highly underserved 
+ areas often lack the community organization and resources required to successfully navigate the federal
+ application process for MUA status \cite{kim2020uneven}.
+
+% 3. Chicago context
+Some very alarming statistics reveal population-level disparities within our social and health-care systems. 
+One prominent example is the 30-year gap in life expectancy between people living in the poor, predominantly 
+African American neighborhoods on Chicago's South Side, as compared to those in the more affluent, predominantly 
+white neighborhoods just nine miles away in Chicago's Loop---the largest life expectancy gap in the United States. 
+Real solutions are only possible with equitable strategies that recognize the contribution of historical and 
+contemporary policies, economics, and health-care access \cite{smithcommunity}.
+
+In Chicago, 68 new clinics opened and only 12 closed since 2009, yet these additions often failed to improve 
+access in the areas that needed them most. Most new clinics were not located in the most severely underserved 
+South and West Side neighborhoods, leading to a safety net that perpetuates racial and socioeconomic inequality 
+\cite{kim2020uneven}. Recent closures further strain the system: a Humboldt Park health clinic that served 
+neighbors and low-income people for nearly a decade was closed \cite{Bloom2023}, Howard Brown Health closed 
+two clinics amid financial pressure \cite{Schencker2024}, and Advocate Health Care closed nearly 50 clinics 
+inside Walgreens stores \cite{Japsen2025}.
+
+% 4. Gap in methodology
+The process for opening new FQHC facilities typically occurs through grant applications from local organizations 
+rather than through systematic spatial planning. HRSA does not use formal optimization models like location-allocation
+or flow models \textcolor{red}{[CITE: source for HRSA process description]}. Community organizations apply for federal funding, and proposals are evaluated based on population
+need, access gaps, financial viability, and organizational capacity. As a result, facility placement may not fully
+reflect national or regional access optimization.
+
+There is currently no large-scale optimization-based location-allocation model that integrates underserved area 
+indicators, facility capacity constraints, population demand, and equity in geographic access. Most existing studies 
+analyze healthcare access descriptively rather than optimizing facility placement. To the best of our knowledge, there is no single paper for Chicago providing actionable optimization-based strategies for decision makers.
+
+% 5. Our contribution
+We propose a flow-based spatial optimization framework for equitable planning of primary care access in Chicago. The framework:
+\begin{itemize}
+    \item Computes IMU scores at finer geographic projections (census blocks) to identify the MUA designation gap at the boundaries,
+    \item Proposes alternative IMU formulations such as probabilistic scores and smooth boundary transitions to address the sharp cutoff at IMU $= 62$,
+    \item Designs a hierarchical location-allocation model with a referral system linking FQHCs to hospitals,
+    \item Uses CTA public transit travel times reflecting real access barriers,
+    \item Uses FalCom, an MCMC sampler for hierarchical capacitated facility location, as the computational engine,
+    \item Provides an interactive decision-support dashboard for community organizations
+    and investors preparing FQHC grant applications: given a proposed facility location,
+    the dashboard runs a FalCom chain and returns a predicted HRSA application score,
+    IMU score with smooth boundary version, patient flow distribution, referral network
+    structure with HRSA compliance check, and ensemble robustness statistics across the
+    distribution of feasible partitions.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Background}\label{sec:background}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Federally Qualified Health Centers}
+
+Health centers need additional resources to sustain program growth and expand access to primary 
+care in underserved communities. New FQHCs are usually not built through a centralized optimization 
+plan. Instead, the process works roughly as follows: (i) an area is identified as underserved using 
+metrics such as the IMU or HPSA scores; (ii) community organizations apply for federal funding to 
+open or expand a health center; (iii) HRSA evaluates proposals based on population need, access gaps, 
+financial viability, and organizational capacity; and (iv) HRSA awards Section 330 grants to selected 
+applicants \cite{HRSA_BPHC}.
+
+FQHCs primarily provide primary care, preventive care, and chronic disease management, but they do not 
+provide most specialized or inpatient services. Patients must be referred to hospitals, specialists, 
+and diagnostic facilities. HRSA requires formal referral relationships, and research shows that strong 
+referral relationships are critical for community health center effectiveness \textcolor{red}{[CITE: source for FQHC referral effectiveness]}.
+
+
+\subsection{MUA Designation and the IMU Score}\label{sec:imu}
+
+An MUA is a geographical area designated as lacking access to primary care services and eligible for enhanced 
+federal support. The geographical area can be a whole county, a group of neighboring counties, or a group of 
+neighboring census tracts. HRSA is responsible for the evaluation of eligibility and designation of MUAs based 
+on the IMU score \cite{HRSA_BPHC}.
+
+The IMU is computed as a weighted sum of four indicators, each with a standardized contribution:
+\begin{enumerate}
+    \item The ratio of primary care physicians per 1,000 residents,
+    \item The infant mortality rate,
+    \item The percentage of the population with incomes below the poverty level,
+    \item The percentage of the population aged 65 years or older.
+\end{enumerate}
+
+\begin{align}
+\text{IMU} &= S_{\text{phys}} + S_{\text{poverty}} + S_{65+} + S_{\text{IMR}} \label{eq:imu} \\[6pt]
+S_{\text{phys}} &= 28.7 \cdot \frac{P_{\max} - P}{P_{\max} - P_{\min}} \in [0,\,28.7] \\[4pt]
+S_{\text{poverty}} &= 25.1 \cdot \frac{V_{\max} - V}{V_{\max} - V_{\min}} \in [0,\,25.1] \\[4pt]
+S_{65+} &= 20.2 \cdot \frac{A_{\max} - A}{A_{\max} - A_{\min}} \in [0,\,20.2] \\[4pt]
+S_{\text{IMR}} &= 26.0 \cdot \frac{M_{\max} - M}{M_{\max} - M_{\min}} \in [0,\,26.0]
+\end{align}
+
+The total IMU score ranges from 0 to 100, where lower values indicate greater underservice. 
+Areas with IMU $\leq 62$ qualify for MUA designation.
+
+For metropolitan areas, the rational service area is defined as a group of census tracts that 
+represent a neighborhood of homogeneous socio-economic and demographic characteristics. Although
+DHHS shortage area designation methods take into account some non-spatial factors such as age
+and socio-economic status, they are primarily regional availability measures that quantify the
+distribution of supply versus demand within a predefined region, often expressed as a ratio of
+population to practitioner \cite{ricketts2007designating}.
+
+The advantage of such a regional availability approach is that it is simple, straightforward
+to implement (the data for physicians and population are readily available and boundaries can
+be easily located), and convenient to administer because the government infrastructure is already
+in place \cite{ricketts2007designating}.
+
+
+\subsection{Limitations of the IMU and the Designation Gap}\label{sec:imu-limitations}
+
+There is significant literature discussing the limitations of IMU and MUA designation. The IMU formula
+relies on weights created in the 1970s. Ricketts et al.\ \cite{ricketts2007designating} argue that the 
+method no longer adequately captures modern healthcare access barriers. Healthcare utilization patterns 
+and physician workforce distribution have changed substantially. Major determinants of healthcare access
+such as insurance coverage, transportation barriers, racial disparities, chronic disease prevalence are 
+not included in the IMU formula.
+
+The designation rule IMU $\leq 62$ creates a sharp cutoff: two areas with IMU scores of 61 and 63 receive 
+entirely different policy treatment, yet their healthcare needs may be nearly identical. Kim et al.\ \cite{kim2020uneven} 
+show that some Chicago tracts meet IMU eligibility criteria but are not designated MUAs because of
+administrative boundaries. Census tracts that are eligible for MUA status but not designated were predominantly 
+Black and poor, located on the South Side of Chicago.
+
+We address these limitations in two ways. First, we compute IMU scores at the census tract level across Chicago 
+to identify tracts that are eligible but undesignated. Second, we propose alternative scoring approaches such as
+probabilistic IMU scores and smooth boundary transition functions that replace the binary cutoff with a 
+continuous measure of underservice (Section~\ref{sec:new-imu}).
+
+
+\subsection{The Chicago Context}\label{sec:chicago}
+
+Kim et al.\ \cite{kim2020uneven} used the spatial distribution of MUA designations and FQHCs in Chicago to evaluate 
+differences between MUA-eligible neighborhoods that received designation and those that did not. Of Chicago's census 
+tracts, 391 were in affluent neighborhoods not eligible for MUA designation, mostly on the north, northwest side, and 
+downtown. The 390 tracts that were eligible and designated for MUA status were clustered on the far north and west side. 
+The 87 tracts that were eligible (IMU scores 48.6--61.7) but not designated as MUAs were predominantly on the South Side.
+
+\begin{table}[h]
+\centering
+\caption{Distribution of FQHCs in Chicago by MUA status \cite{kim2020uneven}.}
+\label{tab:mua-distribution}
+\begin{tabular}{lrrr}
+\toprule
+ & Chicago & MUA & Non-MUA \\
+\midrule
+Newly added clinics (since 2009) & 68 & 41 & 3 \\
+FQHCs per 100,000 poor & 39.6 & 40.8 & 15.5 \\
+Total number of FQHCs & 187 & 112 & 10 \\
+Total population & 2,683,422 & 1,252,783 & 259,226 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Neighborhoods with a greater number of community organizations per 1,000 residents were more likely to receive MUA 
+designation, highlighting that administrative capacity, not just medical need drives designation outcomes \cite{kim2020uneven}.
+
+
+\subsection{Travel Time and Transit Equity}\label{sec:travel}
+
+In the city of Chicago, 36.9\% of African American households had no vehicle compared to 23.2\% of White households \textcolor{red}{[CITE: ACS or census vehicle ownership data]}.
+Physical distance is therefore less important than public transit accessibility, as many underserved residents lack
+private vehicles.
+
+Ermagun and Tilahun \cite{ermagun2020equity} study the equity of access to different destinations by public transit 
+in Chicago. They find that the far south, southwest, and northwest of the city are among areas with lowest accessibility. 
+Looking at accessibility to hospitals, the largest drops associated with population increases are among the elderly, 
+low-income, and families with children aged 5--19. Despite the need of these cohorts to have access to healthcare, 
+public transit does not serve them well, while providing better access to areas with higher percentages of highly-educated 
+people. The South Side, which is predominantly African American and low-income, is among the least accessible areas. 
+Chicago is ranked 3rd nationally for greatest accessibility by transit and 4th for greatest accessibility by walking \textcolor{red}{[CITE: source for Chicago transit ranking]}.
+
+In this work, we use CTA (Chicago Transit Authority) public transit travel times as the distance metric for our model, 
+reflecting the actual transportation options available to the underserved population.
+
+
+\subsection{HRSA Compliance Requirements}\label{sec:hrsa-compliance}
+
+HRSA requires that health center service sites be accessible to the patient population relative to where the population 
+lives or works \textcolor{red}{[CITE: HRSA Program Compliance Manual]}. Health centers must consider distance and travel 
+time between service sites when assessing impact on patient access. HRSA also requires that health centers establish and 
+maintain collaborative relationships with other health care providers within the catchment area, local hospitals, and 
+specialty providers to:
+\begin{itemize}
+    \item Reduce non-urgent use of hospital emergency departments,
+    \item Ensure continuity of care across community providers,
+    \item Provide access to services not available through the health center.
+\end{itemize}
+
+Facility placement should therefore consider proximity to hospitals and referral networks. This motivates the hierarchical 
+structure of our model, where each FQHC is assigned to a referral hospital.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Model and Formulation}\label{sec:model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Doubly-Constrained Spatial Flow Model}\label{sec:flow-model}
+
+Let $I$ denote the set of demand nodes (census tracts or blocks) and $J$ the set of open FQHCs
+in a given spatial partition. Each demand node $i \in I$ carries demand $d_i$, representing
+realized patient counts from the UDS or census-based population. Each FQHC $j \in J$ has
+capacity $c_j$ derived from UDS workforce and visit data. The travel cost $t_{ij}$ is the
+CTA public transit travel time from $i$ to $j$.
+
+\paragraph{Distance decay.}
+We model the friction of travel using an exponential decay function:
+\begin{equation}
+    f(t_{ij}) = e^{-\lambda t_{ij}}
+    \label{eq:decay}
+\end{equation}
+where $\lambda > 0$ is a decay parameter calibrated to observed patient flows via the UDS data.
+
+\paragraph{Flow model.}
+Patient flows $x_{ij}$ from demand node $i$ to FQHC $j$ are given by:
+\begin{equation}
+    x_{ij} = A_i \cdot B_j \cdot d_i \cdot c_j \cdot f(t_{ij})
+    \label{eq:flow}
+\end{equation}
+where $A_i$ and $B_j$ are balancing factors ensuring that both supply and demand constraints
+are simultaneously satisfied.
+
+\paragraph{Balancing factors.}
+The factors $A_i$ and $B_j$ are the unique solution to:
+\begin{align}
+    A_i &= \frac{1}{\displaystyle\sum_{j \in J} B_j \cdot c_j \cdot f(t_{ij})}
+    \label{eq:Ai} \\[6pt]
+    B_j &= \frac{1}{\displaystyle\sum_{i \in I} A_i \cdot d_i \cdot f(t_{ij})}
+    \label{eq:Bj}
+\end{align}
+These are solved via Furness (IPF) iteration: initialize $B_j = 1$ for all $j$, then alternate
+updating $A_i$ via~\eqref{eq:Ai} and $B_j$ via~\eqref{eq:Bj} until convergence, typically
+within 20--50 iterations. The resulting flows satisfy:
+\begin{align}
+    \sum_{j \in J} x_{ij} &= d_i \quad \forall\, i \in I
+    \label{eq:demand-conservation} \\
+    \sum_{i \in I} x_{ij} &= c_j \quad \forall\, j \in J
+    \label{eq:capacity-conservation}
+\end{align}
+Constraint~\eqref{eq:demand-conservation} ensures all demand is allocated;
+constraint~\eqref{eq:capacity-conservation} ensures each FQHC operates at full capacity.
+A singly-constrained variant (demand side only, $\sum_i x_{ij} \leq c_j$) is also considered
+for scenarios where FQHCs may operate below capacity.
+
+\paragraph{Role of FalCom.}
+FalCom generates the spatial partition — determining which census tracts fall within each
+FQHC's catchment area and which FQHCs are assigned to which referral hospitals. Given a
+partition, the flow model~\eqref{eq:flow}--\eqref{eq:Bj} is solved to compute realized flows
+$x_{ij}$. The energy function evaluated at each MCMC step is a flow-based equity or access
+score. A natural choice is the population-weighted average travel time:
+\begin{equation}
+    E = \frac{\displaystyle\sum_{i \in I}\sum_{j \in J} x_{ij} \cdot t_{ij}}{\displaystyle\sum_{i \in I} d_i}
+    \label{eq:energy}
+\end{equation}
+Alternative energy functions include the Gini coefficient of tract-level access
+$\bigl(\sum_j x_{ij} t_{ij}\bigr)/d_i$ or the fraction of demand within a target travel
+time threshold. The FalCom sampler generates a distribution over partitions weighted by
+$\mu_\beta \propto \exp(-\beta E)$, concentrating on equitable, low-energy configurations
+while preserving sampling diversity.
+
+\paragraph{Calibration.}
+Because UDS provides both realized patient flows and facility capacity, $\lambda$
+in~\eqref{eq:decay} can be estimated from observed data rather than chosen ad hoc. This is an
+empirical advantage over most facility location studies, which rely on synthetic demand or
+proxy travel costs.
+
+
+\subsection{Hierarchical Catchment Areas}
+
+In the context of Chicago, a hierarchical system divides facilities into levels: primary care (Level~1) and hospital/specialty 
+care (Level~2). Tao et al.\ \cite{tao2020hierarchical} propose a hierarchical 2SFCA (H2SFCA) method for measuring spatial 
+accessibility to hierarchical facilities, considering varied catchment area sizes, distance decay effects, and transport modes 
+at each level. Wan et al.\ \cite{wan2012three} develop a three-step floating catchment area method that indicates strong potential 
+for identifying health professional shortage areas.
+
+
+\subsection{Redesigning the IMU Score}\label{sec:new-imu}
+
+The IMU formula is not merely outdated; it is structurally flawed in ways that
+systematically misallocate resources. In this section we identify the specific
+failures, review prior reform attempts and the political constraints that blocked
+them, and propose a redesigned scoring framework that integrates with the
+optimization model.
+
+
+\subsubsection{Why the Formula Is Wrong}\label{sec:imu-wrong}
+
+Beyond the well-documented omission of insurance, transportation, and chronic
+disease burden \cite{ricketts2007designating}, the IMU has deeper structural
+problems.
+
+\paragraph{Miscalibrated conversion tables.}
+Each indicator is mapped to a weighted score via lookup tables calibrated to
+1970s national distributions. The national poverty rate, provider supply,
+infant mortality rate, and age distribution have all shifted substantially.
+A census tract that would have scored $10/25.1$ on poverty in 1975 may score
+$18/25.1$ today on the same table, not because it worsened but because the
+scale no longer matches the distribution. The scores do not measure what they
+claim to measure.
+
+\paragraph{Statistical noise in infant mortality.}
+A typical census tract has 300--500 births per year. At this sample size, a
+single infant death changes the rate by 2--3 per thousand, which can shift
+the IMU by several points. The indicator carries enormous variance and almost
+no signal at the geographic level where IMU is computed. Funding decisions are
+made on noise.
+
+\paragraph{Linear independence assumption.}
+The four indicators are summed with fixed weights, implying that they are
+independent and equally substitutable. A tract with no providers but low poverty
+scores the same as a tract with adequate providers but extreme poverty. In
+reality these factors interact: poverty without providers is catastrophically
+worse than either alone. A linear sum cannot capture compounding disadvantage.
+
+\paragraph{Scale compression at the extremes.}
+The $0$--$25$ mapping for each indicator flattens differences among the most
+underserved areas. A tract with zero providers and a tract with 5 per 100,000
+may both map to 24 or 25. For optimization, this is fatal: the score must
+differentiate precisely where need is greatest. The bounded sum (0 to 100)
+saturates at both tails, preventing the score from reflecting how far below
+the threshold an area truly falls.
+
+\paragraph{Provider counts ignore capacity.}
+The physician-to-population ratio counts heads, not capacity. A tract with one
+physician seeing 500 patients and a tract with one physician seeing 3,000
+patients receive the same ratio. Our provider matching reveals that 34 of 166
+FQHC sites in Chicago have zero providers registered at their address in the
+NPPES, yet the IMU formula would still count those sites as serving their area.
+
+
+\subsubsection{Prior Reform Attempts}\label{sec:imu-reform}
+
+Ricketts et al.\ \cite{ricketts2007designating} proposed an alternative
+methodology, the Index of Primary Care Underservice, developed at the Cecil G.\
+Sheps Center at UNC Chapel Hill. Their six-step method computes an age-sex
+adjusted effective population, counts clinician FTEs (including nurse
+practitioners and physician assistants, not only physicians), and applies a
+barrier adjustment derived from regression on nine indicators: poverty below
+200\% FPL, unemployment, racial minority share, Hispanic share, linguistic
+isolation, infant mortality or low birthweight, standardized mortality ratio,
+low population density, and share aged 65+. Each indicator is converted to
+a national percentile rank and then to a partial score via regression-derived
+weights. The final output is an adjusted population-to-clinician ratio.
+
+HRSA adopted this methodology in a proposed rule published in the Federal
+Register on February 29, 2008 (73 FR 11232--11281)
+\cite{HRSA2008proposed}. The proposal would have unified the separate MUA
+and HPSA designation systems into a single three-tier framework. HRSA
+received overwhelmingly negative public comments and withdrew the rule
+without finalizing it. Many areas that held MUA or HPSA designations would
+have lost them under the new formula, threatening Section 330 funding for
+existing FQHCs. A previous proposed rule in 1998 was similarly withdrawn.
+
+Section 5602 of the Affordable Care Act (2010) required HRSA to establish a
+new methodology via negotiated rulemaking. A 28-member committee voted 21--2
+in favor of a revised approach in October 2011, but the Negotiated Rulemaking
+Act required unanimity for HHS to publish the recommendation as an interim
+rule. HHS did not act. The 1975 formula remains in effect today
+\cite{HRSA2008proposed}.
+
+
+\subsubsection{The Political Constraint}\label{sec:imu-political}
+
+Every reform attempt has failed for the same reason: the IMU score is fused
+to a binary funding gate. The chain is:
+\[
+\text{IMU} \leq 62 \;\longrightarrow\; \text{MUA designation}
+\;\longrightarrow\; \text{Section 330 funding eligibility.}
+\]
+A one-point difference between 62 and 63 means the difference between
+millions of dollars and zero. Any formula change that reshuffles scores
+threatens existing clinics serving real patients. The binary cutoff makes the
+formula politically unreformable: improving the measurement changes the money.
+
+
+\subsubsection{The Dilution Problem}\label{sec:dilution}
+
+If the city is partitioned into contiguous districts (as required for honest
+catchment area design), each district's IMU is the population-weighted average
+of its census tracts. Contiguity forces each district to include neighboring
+tracts that may differ in need, pulling the average toward the middle. A
+district straddling a high-poverty tract and a moderate-income tract may
+average to an IMU of 63 or 64, just above the cutoff, even though half its
+population is severely underserved.
+
+This creates a tension between honest boundaries and the binary threshold:
+\begin{itemize}
+  \item Gerrymandering (the current system) allows applicants to draw
+    boundaries that cherry-pick the worst tracts and push IMU below 62.
+  \item Contiguous partitioning produces honest boundaries but dilutes
+    concentrated pockets of need, causing more communities to fail the
+    threshold.
+\end{itemize}
+The more honest the boundary-drawing process, the fewer districts qualify.
+Communities that genuinely need help are penalized for having slightly better
+neighbors. This is a structural failure of the binary cutoff, not of the
+partitioning method.
+
+
+\subsubsection{Proposed Framework: Continuous Composite Scoring}\label{sec:score-function}
+
+We propose replacing the binary IMU threshold with a continuous underservice
+score that serves three roles: ranking districts by need, functioning as the
+energy in the FalCom optimization, and allocating funding proportionally rather
+than through a binary gate.
+
+\paragraph{Score definition.}
+Let $\mathcal{X} = \{x_1, \ldots, x_K\}$ denote a set of $K$ indicators
+measured on each census tract $t$. The underservice score is
+\begin{equation}\label{eq:score}
+  S(t) = \sum_{k=1}^{K} w_k \, \varphi_k\bigl(x_k(t)\bigr),
+\end{equation}
+where $\varphi_k : \R \to [0,1]$ is a monotone normalization function for
+indicator $k$, and $w_k > 0$ are weights satisfying $\sum_k w_k = 1$.
+
+\paragraph{Indicator set.}
+The framework accommodates any set of indicators. Table~\ref{tab:indicators}
+lists the indicators available in our Chicago data, organized by category.
+The original four IMU components are retained for comparability with HRSA,
+supplemented by factors the 1970s formula omits.
+
+\begin{table}[H]
+\centering
+\caption{Candidate indicators for the underservice score.}
+\label{tab:indicators}
+\begin{tabular}{llll}
+\toprule
+\textbf{Category} & \textbf{Indicator} & \textbf{Source} & \textbf{Level} \\
+\midrule
+Access   & CTA transit time to nearest FQHC     & CTA/OTP     & Block  \\
+Access   & Provider-to-population ratio          & NPPES+Census & Tract  \\
+Coverage & Uninsured rate                        & Chicago Health Atlas & Comm.\ area \\
+Burden   & Diabetes prevalence                   & Chicago Health Atlas & Comm.\ area \\
+Burden   & Hypertension prevalence               & Chicago Health Atlas & Comm.\ area \\
+Demog.   & Poverty rate                          & ACS 5-Year  & Tract  \\
+Demog.   & \% aged 65+                           & Decennial   & Block  \\
+Demog.   & Infant mortality rate                 & Chicago Health Atlas & Comm.\ area \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Normalization.}
+We use two normalization functions depending on the indicator type.
+
+For indicators with a natural policy threshold (e.g., 30 minutes of transit
+time), we use a sigmoid:
+\begin{equation}\label{eq:sigmoid}
+  \varphi_k(x) = \frac{1}{1 + e^{-\kappa_k (x - \mu_k)}},
+\end{equation}
+where $\mu_k$ is the threshold (e.g., $\mu = 30$ for transit minutes) and
+$\kappa_k$ controls the steepness. This produces a smooth inflection at the
+policy-relevant boundary.
+
+For all other indicators we use the percentile rank:
+\begin{equation}\label{eq:percentile}
+  \varphi_k(x) = \frac{\operatorname{rank}(x)}{N},
+\end{equation}
+where $N$ is the number of tracts. This is robust to outliers and directly
+interpretable: a tract scoring 0.85 is in the 85th percentile of need on that
+indicator. The CDC Social Vulnerability Index uses an analogous approach
+\cite{CDC_SVI}.
+
+\paragraph{Weighting.}
+Equal weights ($w_k = 1/K$) serve as the default. The framework supports
+user-adjustable weights, allowing the decision maker to specify which
+factors matter and by how much. This separates the policy question (what
+should count as underserved?) from the optimization question (given a
+definition, where should facilities go?). The model finds the best
+configuration for any weight profile.
+
+\paragraph{Dynamic and static components.}
+Among the indicators in Table~\ref{tab:indicators}, transit time to the
+nearest FQHC is the only component that changes when a facility is added or
+removed. All other indicators are fixed characteristics of the tract. This
+means the score responds to the decision variable: when FalCom places a
+facility in a district, the transit component of $S(t)$ decreases for nearby
+tracts, lowering the district energy. The optimizer can observe how each
+candidate location improves the system-wide score.
+
+
+\subsubsection{Probabilistic Extension}\label{sec:prob-imu}
+
+Two of the four original IMU indicators come from the American Community
+Survey, where in approximately 50\% of census tracts the margin of error
+exceeds 50\% of the estimate \cite{spielman2014patterns}. Rather than
+computing a single deterministic score, we model each ACS-sourced indicator
+with its reported uncertainty distribution and produce a probability of
+underservice for each tract.
+
+For each tract $t$, let $\hat{x}_k(t)$ and $\sigma_k(t)$ denote the ACS
+point estimate and standard error for indicator $k$. We draw $M$ samples
+\begin{equation}\label{eq:prob-imu}
+  x_k^{(m)}(t) \sim \mathcal{N}\bigl(\hat{x}_k(t),\, \sigma_k(t)^2\bigr),
+  \qquad m = 1, \ldots, M,
+\end{equation}
+compute the score $S^{(m)}(t)$ for each sample, and report
+\begin{equation}\label{eq:prob-underserved}
+  P(\text{underserved} \mid t) =
+    \frac{1}{M} \sum_{m=1}^{M}
+    \mathbf{1}\bigl[S^{(m)}(t) > \tau\bigr],
+\end{equation}
+where $\tau$ is any threshold of interest. A tract with a point estimate just
+above $\tau$ but high variance may have only a 40\% probability of truly
+exceeding it. This replaces the hard cutoff with a continuous risk measure.
+
+For the FalCom energy function, the expected score $\E[S(t)]$ can be used
+directly, or a risk-averse variant
+$\E[S(t)] + \lambda \sqrt{\Var[S(t)]}$
+that penalizes uncertainty, directing resources toward tracts where either
+need is confidently high or measurement uncertainty is itself a problem
+warranting investment in better data.
+
+
+\subsubsection{District-Level Aggregation}\label{sec:district-score}
+
+FalCom optimizes over districts, not individual tracts. The energy of a
+district $d$ with assigned facility $j$ is the population-weighted average
+of its tracts' scores, modulated by the travel time to the facility:
+\begin{equation}\label{eq:district-energy}
+  E(d) = \frac{1}{\operatorname{Pop}(d)}
+    \sum_{t \in d} \operatorname{Pop}(t) \cdot S(t) \cdot
+    g\bigl(\tau(t, j)\bigr),
+\end{equation}
+where $\tau(t, j)$ is the CTA transit time from tract $t$ to facility $j$
+and $g$ is a monotone increasing function (e.g., $g(x) = 1 + x/30$) so that
+tracts far from their assigned facility contribute more energy. This combines
+need ($S$) with access ($g$) in a single objective that FalCom minimizes
+across the system.
+
+
+\subsubsection{Policy Design: Continuous Funding Allocation}\label{sec:transition}
+
+Any improved scoring methodology faces the political constraint described in
+Section~\ref{sec:imu-political}: existing FQHCs will oppose any formula change
+that threatens their funding. We propose a transition mechanism that evaluates
+all sites under the new score without defunding any existing clinic.
+
+\paragraph{Freeze the floor, redirect the growth.}
+In the transition year, every existing FQHC receives a funding floor equal to
+its current grant amount. The continuous score is computed for all districts.
+In subsequent years, the floor remains nominally frozen: no site receives less
+than it received the previous year. All new appropriations above the aggregate
+floor are allocated proportionally to the district scores. Sites in the
+highest-need districts receive the growth; sites in lower-need districts
+receive flat nominal funding.
+
+Federal FQHC appropriations have grown from \$554 million in 1990 to over
+\$6 billion today. Inflation alone erodes the frozen floor by 2--3\% per year
+in real terms. Over a 10--15 year horizon, a site whose district has genuinely
+improved receives the same nominal amount but substantially less in real
+dollars, while high-need districts grow. No clinic is defunded. No
+designation is revoked. The growth is redirected.
+
+\paragraph{Annual review cycle.}
+Each year, the partition is recomputed with updated data (new providers,
+population shifts, new or closed sites). The score provides HRSA with two
+outputs:
+\begin{enumerate}
+  \item Where the next new facility should go (the district with the highest
+    energy after optimization).
+  \item Which existing districts have improved enough that their growth
+    funding can be reallocated (gradual rebalancing).
+\end{enumerate}
+This makes the scoring methodology reformable. Because no single annual update
+can cause a funding cliff, the formula can be improved incrementally as better
+data or indicators become available.
+
+
+\subsection{Referral System Design}
+
+\textcolor{blue}{TODO: Each FQHC must be within a certain CTA travel time of a referral hospital. Referral constraints. Integration with the hierarchical model.}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experiments}\label{sec:experiments}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Data Sources}
+
+\paragraph{Census and demographic data.}
+The newest block-level data is from the 2020 Decennial Census (DHC). Block-level demographic data is only released with the 
+decennial census (every 10 years). Poverty rate data comes from ACS 5-Year 2020 (mean 19.0\% at tract level). Total Chicago 
+population: 2,783,891; population 65+: 356,716.
+
+\paragraph{Provider data.}
+We use NPPES Data Dissemination V.2 (February 2026), which contains 77,590 Chicago providers from 9.3 million total records nationwide. 
+This includes all provider types; we filter for primary care physicians.
+
+\paragraph{FQHC demand and capacity (UDS).}
+The Uniform Data System (UDS) collects annual reports from every HRSA-funded health center containing detailed information about 
+patients served, medical/dental/behavioral visits, demographics, workforce (physicians, nurse practitioners), services, and finance. 
+This dataset provides facility capacity, actual patient demand, service utilization, and staffing constraints. Almost no operations 
+research papers use this data.
+
+\paragraph{Area Health Resource File (AHRF).}
+This dataset covers every U.S.\ county and includes hundreds of variables: physician counts, hospital beds, demographics, poverty rates, 
+infant mortality, insurance coverage, and workforce data.
+
+\begin{table}[h]
+\centering
+\caption{Chicago geographic and provider data files.}
+\label{tab:chicago-data}
+\scalebox{0.8}{
+\begin{tabular}{llll}
+\toprule
+\textbf{File} & \textbf{Level} & \textbf{Year} & \textbf{Contents} \\
+\midrule
+chicago\_blocks\_enriched.pkl & Block & 2020 & Population, age 65+, poverty rate \\
+chicago\_block\_age65.csv & Block & 2020 DHC & GEOID20, total population, population 65+ \\
+chicago\_tract\_poverty.csv & Tract & 2020 ACS & Poverty rate, population below poverty \\
+chicago\_providers.csv & Provider & 2026 NPPES & 77,590 Chicago NPI providers \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+
+\subsection{Implementation}
+
+\textcolor{blue}{TODO: FalCom configuration for Chicago. CTA travel time computation. Dashboard description.}
+
+
+\subsection{Results}
+
+\textcolor{blue}{TODO}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}\label{sec:discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textcolor{blue}{TODO}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}\label{sec:conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textcolor{blue}{TODO}
+
+
+\bibliographystyle{plainnat}
+\bibliography{ref}
+
+\end{document}

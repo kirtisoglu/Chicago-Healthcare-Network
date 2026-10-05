@@ -25,12 +25,12 @@ Census Blocks  <  Census Tracts  <  Community Areas  <  Health Zones
 
 The sidebar lets you select any two levels simultaneously — a **lower** (finer) and an **upper** (coarser) boundary — and overlay them on the map. The constraint is enforced automatically: the lower level must always be strictly finer than the upper level. Boundary line widths adapt so the two levels remain visually distinguishable at any zoom.
 
-| Level | Count | Description |
-|---|---|---|
-| Census Blocks | ~39,500 | Smallest U.S. Census unit; boundaries only |
-| Census Tracts | 801 | Standard small-area unit; boundaries only |
-| Community Areas | 77 | Chicago's official planning areas since the 1920s; full health data |
-| Health Zones | 6 | Regional groupings defined by the [Chicago Health Atlas](https://chicagohealthatlas.org): Far South, Near South, North/Central, Northwest, Southwest, West |
+| Level           | Count   | Description                                                                                                                                            |
+| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Census Blocks   | ~39,500 | Smallest U.S. Census unit; boundaries only                                                                                                             |
+| Census Tracts   | 801     | Standard small-area unit; boundaries only                                                                                                              |
+| Community Areas | 77      | Chicago's official planning areas since the 1920s; full health data                                                                                    |
+| Health Zones    | 6       | Regional groupings defined by the[Chicago Health Atlas](https://chicagohealthatlas.org): Far South, Near South, North/Central, Northwest, Southwest, West |
 
 ### Health Indicators (Choropleth)
 
@@ -59,12 +59,12 @@ Federally funded primary care sites from the Health Resources & Services Adminis
 **Google Places** (626 facilities, 4 categories)
 Healthcare facilities sourced from the Google Places API, classified into four categories with distinct colors:
 
-| Color | Category |
-|---|---|
-| Red | Hospital — Private / Non-profit |
-| Yellow | Hospital — Public |
+| Color  | Category                                    |
+| ------ | ------------------------------------------- |
+| Red    | Hospital — Private / Non-profit            |
+| Yellow | Hospital — Public                          |
 | Indigo | Primary Care Center — Private / Non-profit |
-| Teal | Urgent Care / Walk-in Clinic |
+| Teal   | Urgent Care / Walk-in Clinic                |
 
 Hovering over any facility shows its name, category, Google rating, and address.
 
@@ -72,15 +72,15 @@ Hovering over any facility shows its name, category, Google rating, and address.
 
 ## Data Sources
 
-| Layer | Source | Year |
-|---|---|---|
-| Community area boundaries | Chicago Data Portal | Stable (since 1920s) |
-| Census tract boundaries | U.S. Census Bureau TIGER/Line | 2020 |
-| Health zone boundaries | Chicago Health Atlas API `/regions/` | Current |
-| Health indicators (33) | Chicago Health Atlas API | 2021–2023 (varies by indicator) |
-| HRSA health centers | HRSA Health Center Service Delivery | 2026 (continuously updated) |
-| Google Places facilities | Google Places API | 2024 |
-| City boundary | Chicago Health Atlas / FalcomPlot | Stable |
+| Layer                     | Source                                 | Year                             |
+| ------------------------- | -------------------------------------- | -------------------------------- |
+| Community area boundaries | Chicago Data Portal                    | Stable (since 1920s)             |
+| Census tract boundaries   | U.S. Census Bureau TIGER/Line          | 2020                             |
+| Health zone boundaries    | Chicago Health Atlas API `/regions/` | Current                          |
+| Health indicators (33)    | Chicago Health Atlas API               | 2021–2023 (varies by indicator) |
+| HRSA health centers       | HRSA Health Center Service Delivery    | 2026 (continuously updated)      |
+| Google Places facilities  | Google Places API                      | 2024                             |
+| City boundary             | Chicago Health Atlas / FalcomPlot      | Stable                           |
 
 Full source documentation, API keys, field names, and methodology notes are in [DATA_SOURCES.md](../DATA_SOURCES.md).
 
@@ -88,13 +88,13 @@ Full source documentation, API keys, field names, and methodology notes are in [
 
 ## Technical Stack
 
-| Component | Technology |
-|---|---|
-| Map rendering | [Deck.gl](https://deck.gl) `GeoJsonLayer`, `ScatterplotLayer` via `MapboxOverlay` |
-| Base map | [MapLibre GL](https://maplibre.org) with CARTO Positron tiles |
-| Frontend framework | [SvelteKit](https://kit.svelte.dev) with `adapter-static` |
-| Indicator metadata | Chicago Health Atlas REST API (live, proxied via Vite dev server) |
-| Build tool | [Vite](https://vitejs.dev) |
+| Component          | Technology                                                                           |
+| ------------------ | ------------------------------------------------------------------------------------ |
+| Map rendering      | [Deck.gl](https://deck.gl) `GeoJsonLayer`, `ScatterplotLayer` via `MapboxOverlay` |
+| Base map           | [MapLibre GL](https://maplibre.org) with CARTO Positron tiles                           |
+| Frontend framework | [SvelteKit](https://kit.svelte.dev) with `adapter-static`                             |
+| Indicator metadata | Chicago Health Atlas REST API (live, proxied via Vite dev server)                    |
+| Build tool         | [Vite](https://vitejs.dev)                                                              |
 
 The dashboard is a fully static single-page application — no backend required. All geographic data is pre-built into GeoJSON files under `static/data/chicago/` and served as static assets.
 
@@ -148,13 +148,13 @@ This dashboard is part of ongoing research on healthcare accessibility and facil
 
 This dashboard was developed with assistance from [Claude](https://claude.ai) (Anthropic), an AI assistant. AI was used in the following ways during development:
 
-| Area | How AI was used |
-|---|---|
-| **Frontend code** | Deck.gl layer configuration, SvelteKit component structure, reactive state management, CSS layout and styling |
+| Area                      | How AI was used                                                                                                                                                                                                            |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Frontend code**   | Deck.gl layer configuration, SvelteKit component structure, reactive state management, CSS layout and styling                                                                                                              |
 | **API exploration** | Querying and interpreting the Chicago Health Atlas REST API; discovering indicator metadata fields (`technical_notes`, `direction`, `datasets`), geographic level availability, and the absence of region-level data |
-| **Data pipeline** | Writing Python scripts for exporting GeoJSON files, dissolving block boundaries into tracts, and fetching health zone boundaries from the regions endpoint |
-| **Documentation** | Drafting DATA_SOURCES.md, STRUCTURE.md, and this file; organizing indicator metadata into structured tables |
-| **Debugging** | Resolving Svelte lifecycle errors (`onDestroy` outside component init), cyclic reactive dependencies, CORS issues with the Health Atlas API, and Vite plugin import errors |
+| **Data pipeline**   | Writing Python scripts for exporting GeoJSON files, dissolving block boundaries into tracts, and fetching health zone boundaries from the regions endpoint                                                                 |
+| **Documentation**   | Drafting DATA_SOURCES.md, STRUCTURE.md, and this file; organizing indicator metadata into structured tables                                                                                                                |
+|                           |                                                                                                                                                                                                                            |
 
 AI was **not** used for: research design, selection of health indicators, interpretation of health outcomes, or any analytical conclusions drawn from the data.
 
